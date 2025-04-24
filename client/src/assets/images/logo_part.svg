@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="210mm"
+   height="297mm"
+   viewBox="0 0 210 297"
+   version="1.1"
+   id="svg1403"
+   inkscape:version="1.2.2 (b0a8486541, 2022-12-01)"
+   sodipodi:docname="logo_part.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1405"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     showgrid="false"
+     inkscape:zoom="0.69931958"
+     inkscape:cx="397.52926"
+     inkscape:cy="409.68394"
+     inkscape:window-width="1920"
+     inkscape:window-height="1011"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs1400" />
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <g
+       id="_1439962160"
+       style="clip-rule:evenodd;fill:#000000;fill-rule:evenodd;image-rendering:optimizeQuality;shape-rendering:geometricPrecision;text-rendering:geometricPrecision"
+       transform="matrix(0.05319732,0,0,0.05319732,-143.46962,-169.04499)">
+      <path
+         class="fil1 str0"
+         d="m 4209,4530 -269,480 c -344,-194 -677,-241 -1001,-141 -273,84 -475,249 -605,493 -130,244 -153,502 -69,775 59,190 153,346 281,468 128,123 281,202 458,240 178,37 359,27 545,-30 158,-48 293,-122 406,-221 113,-100 224,-251 332,-455 l 488,273 c -147,271 -302,475 -466,613 -162,138 -365,244 -606,318 -444,136 -851,108 -1221,-87 -370,-194 -622,-512 -757,-951 -88,-285 -102,-558 -41,-819 61,-261 190,-495 390,-704 198,-209 436,-356 714,-441 235,-73 477,-93 727,-61 248,33 480,116 694,250 z"
+         id="path1"
+         style="fill:#000000;fill-rule:nonzero;stroke:#333333;stroke-width:12.5" />
+      <path
+         id="path5352-2-7-7-9-0-4"
+         class="fil2 str0"
+         d="m 3841,7010 333,-439 c 313,239 637,331 971,277 282,-46 505,-181 667,-405 162,-224 219,-477 174,-760 -32,-196 -103,-364 -214,-502 -110,-139 -251,-239 -421,-300 -171,-62 -352,-77 -543,-46 -163,27 -307,81 -433,163 -125,83 -924,999 -1060,1186 l -446,-335 c 184,-248 1035,-1210 1215,-1325 181,-113 396,-189 644,-230 459,-74 859,10 1199,252 339,244 545,594 619,1049 48,294 24,566 -71,816 -97,251 -258,466 -482,645 -227,179 -483,292 -769,339 -243,39 -486,26 -727,-41 -243,-66 -462,-181 -656,-344 z"
+         style="fill:#000000;stroke:#333333;stroke-width:12.5" />
+      <polygon
+         id="rect5692-9-8-7-0-4-8"
+         class="fil2 str0"
+         points="6621,7418 6099,7418 4985,6199 5508,6199 "
+         style="fill:#000000;stroke:#333333;stroke-width:12.5" />
+      <polygon
+         id="rect5692-9-8-7-0-4-8_0"
+         class="fil2 str0"
+         points="6621,7418 6099,7418 4985,6199 5508,6199 "
+         style="fill:#000000;stroke:#333333;stroke-width:12.5" />
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,193 @@
+
+npx sequelize-cli model:generate --name User --attributes username:string,password:string,email:string
+
+npx sequelize-cli db:migrate
+
+npx sequelize-cli model:generate --name batteryDetails --attributes batteryMake:string,batteryModel:string,batteryCount:integer,batteryTotalVoltage:integer,batteryCount:integer,batteryInfo:json
+npx sequelize-cli db:migrate
+
+
+npx sequelize-cli model:generate --name testDetails --attributes batteryMake:string(20),batteryModel:string(55)
+
+assetId
+installDate
+
+CustomerDetails
+
+npx sequelize-cli model:generate --name customerDetails --attributes
+customerId:string,
+customerName:string,
+customerAttn:string,
+cutomerAddress1:string,
+cutomerAddress2:string,
+cutomerCity:string,
+customerPincode:string,
+customerState:string,
+customerCountry:string,
+customerEmail:string,
+customerGST:string,
+customerContact1:string,
+customerContact2:string,
+
+
+VendorDetails
+
+npx sequelize-cli model:generate --name vendorDetails --attributes
+vendorId:string,
+vendorName:string,
+vendorAttn:string,
+vendorAddress1:string,
+vendorAddress2:string,
+vendorCity:string,
+vendorPincode:string,
+vendorState:string,
+vendorCountry:string,
+vendorEmail:string,
+vendorGST:string,
+vendorContact1:string,
+vendorContact2:string,
+
+PropertyDetails
+
+npx sequelize-cli model:generate --name propertyDetails --attributes
+propertyId:string,
+propertyName:string,
+propertyAttn:string,
+propertyAddress1:string,
+propertyAddress2:string,
+propertyCity:string,
+propertyPincode:string,
+propertyState:string,
+propertyCountry:string,
+propertyEmail:string,
+propertyContact1:string,
+propertyContact2:string,
+propertyLocation:string
+
+
+accounts
+
+npx sequelize-cli model:generate --name accounts --attributes
+accountId:string,
+accountName:string,
+accountAttn:string,
+accountAddress1:string,
+accountAddress2:string,
+accountCity:string,
+accountPincode:string,
+accountState:string,
+accountCountry:string,
+accountEmail:string,
+accountGST:string,
+accountContact1:string,
+accountContact2:string,
+
+
+
+accounts
+npx sequelize-cli model:generate --name accounts --attributes
+accountId:string,
+legalName:string,
+contactInfo:json, // contains all communication info
+billingInfo:json, // contains all business related info like pan, gst, etc
+bankingInfo:json, // contains info regarding all bank accounts including preffered or primary
+isClient:bool,
+isVendor:bool
+
+contacts
+
+contactId:string,
+legalName:string,
+employerId:string, // id of the account 
+personalInfo:json, // contins all personal info
+employmentInfo:json, // contain all info regarding employment like doj, esi/pf, designation etc.
+bankingInfo:json, // contains info regarding all bank accounts including preffered or primary
+miscInfo:json, // contains other miscellaneous info
+
+property
+
+propertyId:string,
+legalName:string,
+propertyInfo:json,
+clientId:string,
+assignedVendors:json,
+assignedManpower:json,// remove
+propertyLocation:json
+
+asset
+
+ate
+
+accounts
+npx sequelize-cli model:generate --name accounts --attributes accountId:string,legalName:string,contactInfo:json,billingInfo:json,bankingInfo:json,isClient:boolean,isVendor:boolean
+
+insert into `accounts` values (1, '49f47c9a-f8f8-4cb4-a24e-10648b68d8aa', 'My Legal Name', '{"city":"chennai"}', '{"gst":"1234567890"}', '{"account_no":"1234567890"}',true, false ,now(), now());
+
+
+username
+password
+role
+contactId
+isactive
+authApp
+isloggedin
+
+49f47c9a-f8f8-4cb4-a24e-10648b68d8aa
+
+contacts
+npx sequelize-cli model:generate --name contacts --attributes contactId:string,legalName:string,employerId:string,personalInfo:json,employmentInfo:json,bankingInfo:json,miscInfo:json
+
+property
+
+npx sequelize-cli model:generate --name properties --attributes propertyId:string,legalName:string,propertyInfo:json,clientId:string,assignedVendors:json,assignedManpower:json,propertyLocation:json
+
+
+
+contacts
+
+contactId:string,
+legalName:string,
+assignedEmployer:string, // id of the account 
+assignedSites:json,
+designation:string,
+personalInfo:json, // contins all personal info
+employmentInfo:json, // contain all info regarding employment like doj, esi/pf, designation etc.
+bankingInfo:json, // contains info regarding all bank accounts including preffered or primary
+miscInfo:json, // contains other miscellaneous info
+
+
+site
+
+siteId:string,
+legalName:string,
+siteInfo:json,
+clientId:string,
+assignedVendors:json,
+siteLocation:json
+
+
+users
+
+userId:string,
+username:string,
+password:string,
+role:string,
+contactId:string,
+isActive:boolean,
+isLoggedin:boolean,
+isWebLogin:boolean,
+isMobileLogin:boolean,
+createdBy:string,
+updatedBy:string
+
+
+npx sequelize-cli model:generate --name accounts --attributes accountId:string,legalName:string,contactInfo:json,billingInfo:json,bankingInfo:json,isClient:boolean,isVendor:boolean,createdby:string,updatedBy:string
+
+npx sequelize-cli model:generate --name contacts --attributes contactId:string,legalName:string,assignedEmployer:string,assignedSites:json,designation:string,personalInfo:json,employmentInfo:json,bankingInfo:json,miscInfo:json,createdby:string,updatedBy:string
+
+npx sequelize-cli model:generate --name sites --attributes siteId:string,legalName:string,siteInfo:json,clientId:string,assignedVendors:json,siteLocation:json,createdby:string,updatedBy:string
+
+npx sequelize-cli model:generate --name users --attributes userId:string,username:string,password:string,role:string,contactId:string,isActive:boolean,isLoggedin:boolean,isWebLogin:boolean,isMobileLogin:boolean,createdBy:string,updatedBy:string
+
+npx sequelize-cli model:generate --name blacklistedTokens --attributes token:string, blacklistedAt:datetime
+

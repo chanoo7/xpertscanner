@@ -1,0 +1,112 @@
+Auto billing software 
+
+1 site lead user 
+a. Attendance sheet input 
+b. New employees data input - AVK 
+1.	Name, Father / Husband Name, Aadhar Number, Date of Birth, date of Joining, designation, take home salary fixed
+2.	Aadhar, PAN & Bank Passbook / Canceled Bank Cheque upload
+3.	Employee photo
+4.	Family Aadhar details - only take home salary is more than 21,000 per month (father and mother, if unmarried and spouse and children, if married 
+
+C. New employees data input (Vendor partner) 
+1.	Name, Father / Husband Name, Aadhar Number, Date of Birth, date of Joining, designation
+2.	Other services bill amount (before tax) or the number of service done details or service provided or not details 
+3.	Upload the bills 
+
+ESI & PF Vendor Login 
+1.	Approved attendance of AVK 
+2.	New joiner data base like: Name, Father / Husband Name, Aadhar Number, Date of Birth, date of Joining, designation, take home salary fixed, PAN & Bank Passbook / Canceled Bank Cheque details with site name
+
+Auditor login 
+
+1.	Client invoice details - client name, invoice number, client GST Number, invoice base amount, tax amount and copy of invoice for the month (select option needed month and year)
+2. Should be able tyo upload gst 2b and challan(3b)
+
+Manpower vendor login 
+
+1.	View and download site attendance for their respective employees (only)
+2.	View their proposed invoice amount based on attendance and approved cost 
+3.	Upload their invoice 
+4.	View their payment status like under review, approved, processed and done along with their DSO - pdf file and view and download load 
+5.	Upload their NDC for every quarter 
+
+Super admin login 
+
+1. One time input - client details (name and address), site name (service to), address, GST Number, PO / work order / approval mail date and number 
+2. Agreed payment timeline (number of days 
+3. Contract person mail id 
+4. Vendor approved costing - only view by respective vendor login & view and edit by super admin 
+5. approved manpower, cost sheet- only view / edit by Super admin as per Annexure 1
+6. Client approved other services cost - only view / edit by super admin 
+7. Other services cost approved by AVK - view by vendor - view by respective vendor 
+
+Other service vendor login 
+
+1. Upload their invoice 
+2. View their payment status like under review, approved, processed and done along with their DSO - pdf file and view and download load 
+3. Upload their NDC for every quarter
+
+
+1. List of holidays is as per the client's list of holidays
+2. SL/CL max 11 per year
+3. L - Leave
+A B, C - Shifts
+L - Leave
+CL/SL - Casual Leave/ Sick Leave
+G - General Shift
+O - Off
+CO - Comp Off
+H - Holiday
+PL - Previlage Leave
+Birthday Leave
+Anniversary Leave
+Paternity Leave
+Maternity Leave
+
+
+
+Designations
+
+Manager Admin 
+Manager HR
+Manager Finance
+Customer Relationship Manager
+Accounts Executive
+Technical Executive
+Front Office Executive
+Visiting Technician
+Visiting Plumber
+Visiting Gardener
+Visiting Janitor
+Releaving Janitor
+Help desk Operator
+Asst Manager
+Club Manager
+Fire Executive
+Gardener
+Gym Trainer
+Multi Skill Technician
+Plumber
+Property Manager 
+Senior HK Janitor
+STP/WTP Operator
+Janiotr Mal & Female
+HK suprvisor
+Security Gaurd
+ASO
+SO
+MLCP Operator
+Swimming pool Operator
+Receptionist
+Electrician
+DG Operator
+Soft Service Executive
+Tech Supervisor
+Shift engineer
+Executive
+Lifeguard
+Fire Gaurd
+Executive - Physical Security
+Office boy 
+Pantry boy
+Juinor Technician

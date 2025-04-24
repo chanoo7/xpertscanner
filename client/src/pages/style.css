@@ -1,0 +1,35 @@
+.dashboard-container {
+    padding: 20px;
+    /* Add padding to the container */
+    min-height: 100vh;
+    /* Ensure full viewport height */
+    background-color: #f8f9fa;
+    /* Example background color */
+}
+
+.dashboard-title {
+    color: #343a40;
+    /* Darker title color */
+}
+
+.dashboard-card {
+    margin-bottom: 20px;
+    /* Add margin between cards */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    /* Add a subtle shadow */
+    border: none;
+    /* remove default border */
+}
+
+.card-text {
+    font-size: 16px;
+    /* Increase font size */
+    color: #555;
+    /* Slightly darker text color */
+}
+
+/* Optional: Style the loading spinner */
+.spinner-border {
+    width: 3rem;
+    height: 3rem;
+}

@@ -1,0 +1,1 @@
+[{"id":1, "accountId":"49f47c9a-f8f8-4cb4-a24e-10648b68d8aa", "legalName":"My Legal Name", "contactInfo":{"city": "chennai"}, "billingInfo":{"gst": "1234567890"}, "bankingInfo":{"account_no": "1234567890"}, "isClient":1, "isVendor":0, "createdAt":"2024-12-16 18:56:53", "updatedAt":"2024-12-16 18:56:53"}]
