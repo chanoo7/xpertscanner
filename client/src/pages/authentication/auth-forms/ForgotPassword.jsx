@@ -5,6 +5,7 @@ import {
 import axios from 'axios';
 import Swal from 'sweetalert2';
 
+
 const ForgotPassword = () => {
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
