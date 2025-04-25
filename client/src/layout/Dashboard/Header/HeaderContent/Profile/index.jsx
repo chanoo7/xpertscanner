@@ -43,7 +43,7 @@ export default function Profile() {
   
   useEffect(() => {
     const userData = JSON.parse(localStorage.getItem("userData"));
-    
+    console.log("userData" +" : "+JSON.stringify(userData))
     if (userData && userData.contact && userData.contact.legalName) {
       setUser(userData.contact.legalName); // Set user name dynamically
     } else {

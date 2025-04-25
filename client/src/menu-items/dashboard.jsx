@@ -1,9 +1,13 @@
 import { DashboardOutlined, UserSwitchOutlined } from '@ant-design/icons';
-
+import  FormatLineSpacingIcon from '@mui/icons-material/FormatLineSpacing';
+import QrCodeIcon from '@mui/icons-material/QrCode';
+import ViewModuleIcon from '@mui/icons-material/ViewModule';
 // icons
 const icons = {
   DashboardOutlined,
-  UserSwitchOutlined // Icon for Admin Dashboard
+  FormatLineSpacingIcon,
+  QrCodeIcon,
+  ViewModuleIcon 
 };
 
 // Function to safely get user role from localStorage
@@ -43,6 +47,33 @@ const dashboard = {
       })(),
       icon: icons.DashboardOutlined,
       breadcrumbs: false
+    },
+    {
+      id: 'line-view', // Add LineView menu item
+      title: 'Line View',
+      type: 'item',
+      url: '/line-view',
+      icon: icons.FormatLineSpacingIcon,
+      breadcrumbs: false,
+      visible: userRole === 'su' || userRole === 'admin' || userRole === 'user' // Make LineView visible for all roles
+    },
+    {
+      id: 'QRData', // Add LineView menu item
+      title: 'QRData-view',
+      type: 'item',
+      url: '/qr-data-view',
+      icon: icons.QrCodeIcon,
+      breadcrumbs: false,
+      visible: userRole === 'su' || userRole === 'admin' || userRole === 'user' // Make LineView visible for all roles
+    },
+    {
+      id: 'LineLayout', // Add LineView menu item
+      title: 'LineLayout-view',
+      type: 'item',
+      url: '/line-layout-view',
+      icon: icons.ViewModuleIcon,
+      breadcrumbs: false,
+      visible: userRole === 'su' || userRole === 'admin' || userRole === 'user' // Make LineView visible for all roles
     }
   ]
 };

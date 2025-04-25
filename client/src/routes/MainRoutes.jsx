@@ -1,11 +1,12 @@
 import { lazy } from 'react';
 import Loadable from 'components/Loadable';
-import DashboardLayout from 'layout/Dashboard'; // Renamed to avoid conflict with 'dashboard' route
-import AdminRoute from 'components/AdminRoute'; // Protect admin routes
+import DashboardLayout from 'layout/Dashboard';
+import AdminRoute from 'components/AdminRoute';
 
-// Lazy-loaded pages
-//const DashboardDefault = Loadable(lazy(() => import('pages/dashboard/index')));
 const DashboardDefault = Loadable(lazy(() => import('pages/dashboard/product-monitoring')));
+const LineView = Loadable(lazy(() => import('pages/dashboard/LineView')));
+const QrDataView = Loadable(lazy(() => import('pages/dashboard/QrDataView')));
+const CompactIdLayout = Loadable(lazy(() => import('pages/dashboard/CompactIdLayout')));
 const Login = Loadable(lazy(() => import('pages/authentication/login')));
 const AdminDashboard = Loadable(lazy(() => import('pages/dashboard/Admin_index')));
 const ViewDevices = Loadable(lazy(() => import('pages/devices/viewDevices')));
@@ -16,28 +17,38 @@ const Color = Loadable(lazy(() => import('pages/component-overview/color')));
 const Typography = Loadable(lazy(() => import('pages/component-overview/typography')));
 const Shadow = Loadable(lazy(() => import('pages/component-overview/shadows')));
 
-// ==============================|| MAIN ROUTING ||============================== //
-
 const MainRoutes = {
   path: '/',
-  element: <DashboardLayout />, // Use the renamed DashboardLayout component
+  element: <DashboardLayout />,
   children: [
     {
       path: 'dashboard',
       children: [
         {
           path: 'default',
-          element: <DashboardDefault /> // Corrected: Use DashboardDefault component
+          element: <DashboardDefault />
         },
         {
           path: 'admin',
-          element: <AdminRoute element={<AdminDashboard />} /> // Admin route
+          element: <AdminRoute element={<AdminDashboard />} />
         },
         {
-          path: 'login', // Removed leading slash to avoid double slash in URL
-          element: <Login /> // No need for AdminRoute here, login is accessible to all
+          path: 'login',
+          element: <Login />
         }
       ]
+    },
+    {
+      path: 'line-view', // Add LineView Route
+      element: <LineView />
+    },
+    {
+      path: 'qr-data-view', // Add LineView Route
+      element: <QrDataView />
+    },
+    {
+      path: 'line-layout-view', // Add LineView Route
+      element: <CompactIdLayout />
     },
     {
       path: 'devices',
