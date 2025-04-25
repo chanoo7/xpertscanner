@@ -54,7 +54,7 @@ function LineView() {
     axios
       .get("http://localhost:5000/product/summary")
       .then((response) => {
-        console.log("Summary Data:", response.data);
+        //console.log("Summary Data:", response.data);
         const totalLines = response?.data?.data?.totalLines || 0;
         const lineList = Array.from({ length: totalLines }, (_, i) => i + 1);
         setLines(lineList);
