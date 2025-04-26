@@ -76,7 +76,7 @@ export default function Profile() {
   
     try {
       await axios.post(
-        "http://localhost:5000/auth/logout",
+        `${process.env.REACT_APP_API_URL}/auth/logout`,
         {},
         {
           headers: { 'Authorization': `Bearer ${accessToken}` },

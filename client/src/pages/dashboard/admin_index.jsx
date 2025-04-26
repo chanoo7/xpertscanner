@@ -73,7 +73,7 @@ export default function AdminDashboard() {
       };
 
       const response = await axios.post(
-        "http://localhost:5000/auth/updateUser",
+        `${process.env.REACT_APP_API_URL}/auth/updateUser`,
         updatedUser, // Send updated user with userId as contactId
         {
           headers: { Authorization: `Bearer ${getAccessToken()}` },
@@ -153,7 +153,7 @@ export default function AdminDashboard() {
   const fetchUsers = async () => {
     try {
       const response = await axios.post(
-        "http://localhost:5000/auth/listUsers",
+        `${process.env.REACT_APP_API_URL}/auth/listUsers`,
         {},
         {
           headers: { Authorization: `Bearer ${getAccessToken()}` },
@@ -176,8 +176,8 @@ export default function AdminDashboard() {
   const handleToggleUserStatus = async (user) => {
     const isEnabling = !user.isActive; // Determine if enabling or disabling
     const apiUrl = isEnabling
-      ? "http://localhost:5000/auth/enableUser"
-      : "http://localhost:5000/auth/disableUser";
+      ? `${process.env.REACT_APP_API_URL}/auth/enableUser`
+      : `${process.env.REACT_APP_API_URL}/auth/disableUser`;
 
     try {
       const response = await axios.post(

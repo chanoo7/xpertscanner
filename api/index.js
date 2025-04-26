@@ -10,7 +10,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(cookieParser());
 
-app.set('trust proxy', true);
+
 
 // Fix: Remove conflicting manual CORS headers
 // const allowedOrigins = ['http://localhost:3000', 'http://192.168.0.105:3000'];
@@ -29,7 +29,7 @@ app.set('trust proxy', true);
 //     allowedHeaders: 'Origin, X-Requested-With, Content-Type, Accept, Authorization',
 //   })
 // );
-
+app.set('trust proxy', true);
 const allowedOrigins = ['http://localhost:3000', 'http://127.0.0.1:3000', 'http://192.168.0.105:3000', 'http://192.168.1.12:3000'];
 app.use(cors({
   origin: function(origin, callback) {

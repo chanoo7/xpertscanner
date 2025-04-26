@@ -1,4 +1,6 @@
-const { users } = require('./models'); // adjust path as needed
+const db = require('../models'); // Go up one directory
+const { users } = db;
+ // adjust path as needed
 const bcrypt = require('bcrypt');
 
 async function seedUsers() {
@@ -7,7 +9,7 @@ async function seedUsers() {
     await users.bulkCreate([
       {
         userId: 'uuid1',
-        username: '9047047146',
+        username: '9047047147',
         password: hashedPassword,
         role: 'su',
         type: 'owner',

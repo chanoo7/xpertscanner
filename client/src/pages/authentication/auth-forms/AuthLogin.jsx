@@ -48,7 +48,7 @@ export default function AuthLogin({ isDemo = false }) {
       onSubmit={async (values, { setSubmitting, setErrors }) => {
         try {
           const response = await axios.post(
-            "http://localhost:5000/auth/login",
+            `${process.env.REACT_APP_API_URL}/auth/login`,
             {
               username: values.username,
               password: values.password,

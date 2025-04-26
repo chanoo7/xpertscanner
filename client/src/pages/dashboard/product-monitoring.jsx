@@ -9,7 +9,7 @@ export default function DashboardDefault() {
 
 useEffect(() => {
   axios
-    .get("http://localhost:5000/product/summary")
+    .get(`${process.env.REACT_APP_API_URL}/product/summary`)
     .then((response) => {
       //console.log("Axios Response:", response); // ✅ Log full response
       setSummary(response.data); // ✅ Assign `response.data`

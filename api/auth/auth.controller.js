@@ -70,12 +70,12 @@ transporter.verify((error, success) => {
 
 const mqtt = require('mqtt');
 
-// MQTT Configuration
-const mqttBrokerUrl = process.env.MQTT_BROKER_URL || 'mqtt://localhost:1883'; // Use environment variable
+const mqttBrokerUrl = process.env.MQTT_BROKER_URL || 'mqtt://localhost:1883';
 const mqttClient = mqtt.connect(mqttBrokerUrl);
-const mqttTopic = process.env.MQTT_TOPIC || 'your/mqtt/topic'; // Use environment variable
 
-// Store the latest data received from MQTT. Initialize with default values.
+const qrTopic = process.env.MQTT_QR_TOPIC || 'mqtt/kh/demo';
+const statusTopic = process.env.MQTT_STATUS_TOPIC || 'status';
+
 let latestData = {
   stationId: null,
   timestamp: null,
@@ -85,20 +85,34 @@ let latestData = {
 
 mqttClient.on('connect', () => {
   console.log('Connected to MQTT broker');
-  mqttClient.subscribe(mqttTopic);
+  mqttClient.subscribe([qrTopic, statusTopic], (err) => {
+    if (err) {
+      console.error('MQTT subscribe error:', err);
+    }
+  });
 });
 
 mqttClient.on('message', (topic, message) => {
   try {
-    const receivedData = JSON.parse(message.toString());
-    latestData = { ...latestData, ...receivedData };  // Update with received data
-    console.log("Received data from MQTT:", latestData);
-  } catch (error) {
-    console.error('Error parsing MQTT message:', error);
+    const payload = JSON.parse(message.toString());
+
+    if (topic === qrTopic) {
+      latestData = {
+        ...latestData,
+        stationId: payload.stationId || latestData.stationId,
+        timestamp: payload.timestamp || Date.now() / 1000,
+        qr: payload.qr || latestData.qr,
+      };
+    } else if (topic === statusTopic) {
+      latestData.status = payload.status || latestData.status;
+    }
+
+    console.log(`Received MQTT data on topic [${topic}]:`, latestData);
+  } catch (err) {
+    console.error('Error parsing MQTT message:', err);
   }
 });
 
-// New API endpoint to serve MQTT data
 router.get('/api/mqtt-data', (req, res) => {
   res.json(latestData);
 });

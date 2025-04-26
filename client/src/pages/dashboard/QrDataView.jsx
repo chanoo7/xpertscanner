@@ -18,42 +18,44 @@ export default function QrDataView() {
 
   const [history, setHistory] = useState([]);
 
+  // useEffect(() => {
+  //   if (data) {
+  //     setHistory((prev) => [data, ...prev]); // Append new data at the top
+  //   }
+  // }, [data]);
+
   useEffect(() => {
-    if (data) {
-      setHistory((prev) => [data, ...prev]); // Append new data at the top
+    if (data && (history.length === 0 || JSON.stringify(data) !== JSON.stringify(history[0]))) {
+      setHistory((prev) => [data, ...prev]);
     }
   }, [data]);
+  
 
   useEffect(() => {
     const fetchData = async () => {
-      setIsLoading(true); // Start loading
+      setIsLoading(true);
       try {
-        const mockResponse = {
-          stationId: Math.floor(Math.random() * 100),
-          timestamp: Math.floor(Date.now() / 1000),
-          qr: `QR-${Math.floor(Math.random() * 999999999)}`,
-          status: Math.random() > 0.5 ? "online" : "offline",
-        };
-
-        await new Promise((resolve) => setTimeout(resolve, 10000)); // Simulate API delay
-
+        const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/mqtt-data`);
+        const newData = response.data;
+  
         setData((prevData) =>
-          JSON.stringify(prevData) !== JSON.stringify(mockResponse) ? mockResponse : prevData
+          JSON.stringify(prevData) !== JSON.stringify(newData) ? newData : prevData
         );
         setUpdateCount((prevCount) => prevCount + 1);
       } catch (err) {
         console.error("Error fetching data:", err);
         setError(err.message);
       } finally {
-        setIsLoading(false); // Stop loading after data is fetched
+        setIsLoading(false);
       }
     };
-
+  
     fetchData(); // Initial fetch
     const intervalId = setInterval(fetchData, 5000); // Poll every 5 seconds
-
-    return () => clearInterval(intervalId); // Cleanup on unmount
+  
+    return () => clearInterval(intervalId);
   }, []);
+  
 
 
 

@@ -5,7 +5,6 @@ import {
 import axios from 'axios';
 import Swal from 'sweetalert2';
 
-
 const ForgotPassword = () => {
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
@@ -19,6 +18,7 @@ const ForgotPassword = () => {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [passwordLoading, setPasswordLoading] = useState(false);
 
+  
   // Step 1: Send OTP
   const handleResetPassword = async () => {
     setLoading(true);
@@ -35,7 +35,7 @@ const ForgotPassword = () => {
         return;
       }
 
-      const response = await axios.post("http://localhost:5000/auth/send-otp", requestData);
+      const response = await axios.post(`${process.env.REACT_APP_API_URL}/auth/send-otp`, requestData);
 
       if (response.status === 200) {
         setOtpSent(true);
@@ -56,7 +56,7 @@ const ForgotPassword = () => {
     setError(null);
 
     try {
-      const response = await axios.post("http://localhost:5000/auth/verify-otp", {
+      const response = await axios.post(`${process.env.REACT_APP_API_URL}/auth/verify-otp`, {
         email: email || undefined,
         phone: phone || undefined,
         otp,
@@ -86,7 +86,7 @@ const ForgotPassword = () => {
     setError(null);
 
     try {
-      const response = await axios.post("http://localhost:5000/auth/resetPassword", {
+      const response = await axios.post(`${process.env.REACT_APP_API_URL}/auth/resetPassword`, {
         email: email || undefined,
         phone: phone || undefined,
         newPassword,
