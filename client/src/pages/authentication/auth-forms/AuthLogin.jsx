@@ -13,17 +13,18 @@ import EyeInvisibleOutlined from '@ant-design/icons/EyeInvisibleOutlined';
 import axios from 'axios';  // Import axios for API calls
 import Swal from "sweetalert2";
 import ForgotPassword from './forgotPassword';
-
+console.log("Environment Variables:", import.meta.env);
 export default function AuthLogin({ isDemo = false }) {
   const [checked, setChecked] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
-
+  //console.log(`${process.env.REACT_APP_API_URL}`)
   const handleClickShowPassword = () => setShowPassword(!showPassword);
   const handleMouseDownPassword = (event) => event.preventDefault();
 
   const handleForgotPassword = () => {
     console.log("Forgot Password Clicked!");
+    
     // Add your logic here (e.g., open a modal, show a form, etc.)
   };
 
@@ -44,11 +45,11 @@ export default function AuthLogin({ isDemo = false }) {
         password: Yup.string().max(255).required("Password is required"),
       })}
 
-     
+  
       onSubmit={async (values, { setSubmitting, setErrors }) => {
         try {
           const response = await axios.post(
-            `${process.env.REACT_APP_API_URL}/auth/login`,
+            `${import.meta.env.VITE_API_URL}/auth/login`,
             {
               username: values.username,
               password: values.password,

@@ -35,7 +35,7 @@ export default function QrDataView() {
     const fetchData = async () => {
       setIsLoading(true);
       try {
-        const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/mqtt-data`);
+        const response = await axios.get(`${import.meta.env.VITE_API_URL}/auth/api/mqtt-data`);
         const newData = response.data;
   
         setData((prevData) =>

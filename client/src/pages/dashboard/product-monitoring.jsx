@@ -9,7 +9,7 @@ export default function DashboardDefault() {
 
 useEffect(() => {
   axios
-    .get(`${process.env.REACT_APP_API_URL}/product/summary`)
+    .get(`${import.meta.env.VITE_API_URL}/product/summary`)
     .then((response) => {
       //console.log("Axios Response:", response); // ✅ Log full response
       setSummary(response.data); // ✅ Assign `response.data`

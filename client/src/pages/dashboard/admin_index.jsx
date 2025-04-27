@@ -73,7 +73,7 @@ export default function AdminDashboard() {
       };
 
       const response = await axios.post(
-        `${process.env.REACT_APP_API_URL}/auth/updateUser`,
+        `${import.meta.env.VITE_API_URL}/auth/updateUser`,
         updatedUser, // Send updated user with userId as contactId
         {
           headers: { Authorization: `Bearer ${getAccessToken()}` },
@@ -153,7 +153,7 @@ export default function AdminDashboard() {
   const fetchUsers = async () => {
     try {
       const response = await axios.post(
-        `${process.env.REACT_APP_API_URL}/auth/listUsers`,
+        `${import.meta.env.VITE_API_URL}/auth/listUsers`,
         {},
         {
           headers: { Authorization: `Bearer ${getAccessToken()}` },
@@ -176,8 +176,8 @@ export default function AdminDashboard() {
   const handleToggleUserStatus = async (user) => {
     const isEnabling = !user.isActive; // Determine if enabling or disabling
     const apiUrl = isEnabling
-      ? `${process.env.REACT_APP_API_URL}/auth/enableUser`
-      : `${process.env.REACT_APP_API_URL}/auth/disableUser`;
+      ? `${import.meta.env.VITE_API_URL}/auth/enableUser`
+      : `${import.meta.env.VITE_API_URL}/auth/disableUser`;
 
     try {
       const response = await axios.post(

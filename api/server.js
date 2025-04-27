@@ -33,7 +33,7 @@ app.use(
 app.options('*', cors());
 
 // Load routes after middleware
-app.use('/accounts', require('./accounts/accounts.controller'));
+//app.use('/accounts', require('./accounts/accounts.controller'));
 app.use('/auth', require('./auth/auth.controller'));
 
 // Fix: Correct `app.listen` syntax

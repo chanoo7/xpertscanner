@@ -62,7 +62,7 @@ export default function AuthRegister({ onUserAdded }) {
         onSubmit={async (values, { setSubmitting, setErrors, resetForm }) => {
           try {
             const response = await axios.post(
-              `${process.env.REACT_APP_API_URL}/auth/register`,
+              `${import.meta.env.VITE_API_URL}/auth/register`,
               values,
               {
                 headers: { Authorization: `Bearer ${getAccessToken()}` },

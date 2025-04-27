@@ -52,7 +52,7 @@ function LineView() {
 
   useEffect(() => {
     axios
-      .get(`${process.env.REACT_APP_API_URL}/product/summary`)
+      .get(`${import.meta.env.VITE_API_URL}/product/summary`)
       .then((response) => {
         //console.log("Summary Data:", response.data);
         const totalLines = response?.data?.data?.totalLines || 0;
@@ -83,7 +83,7 @@ function LineView() {
         console.log("Fetching all lines...");
 
         const requests = lines.map((line) =>
-          axios.get(`${process.env.REACT_APP_API_URL}/product/lines/${line}/stations`)
+          axios.get(`${import.meta.env.VITE_API_URL}/product/lines/${line}/stations`)
         );
 
         const responses = await Promise.all(requests);
@@ -116,7 +116,7 @@ function LineView() {
       } else {
         console.log(`Fetching styles for line ${lineId}...`);
 
-        const response = await axios.get(`${process.env.REACT_APP_API_URL}/product/lines/${lineId}/stations`);
+        const response = await axios.get(`${import.meta.env.VITE_API_URL}/product/lines/${lineId}/stations`);
         const stations = response?.data?.data || [];
         const styleMap = new Map();
 
