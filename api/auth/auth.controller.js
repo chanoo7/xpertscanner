@@ -107,7 +107,7 @@ mqttClient.on('message', (topic, message) => {
       latestData.status = payload.status || latestData.status;
     }
 
-    console.log(`Received MQTT data on topic [${topic}]:`, latestData);
+   // console.log(`Received MQTT data on topic [${topic}]:`, latestData);
   } catch (err) {
     console.error('Error parsing MQTT message:', err);
   }
@@ -120,7 +120,7 @@ router.get('/api/mqtt-data', (req, res) => {
 
 router.post('/send-otp', async (req, res) => {
     const { email, phone } = req.body;
-  console.log(req.body)
+  //console.log(req.body)
     if (!email && !phone) {
       return res.status(400).json({ error: 'Please provide either Email or Phone.' });
     }
@@ -253,13 +253,13 @@ function verifyOtp(req, res) {
 
 function updateUser(req, res, next) {
     // Debug log to see the incoming request
-    console.log('Incoming Request:', req.body);
+    //console.log('Incoming Request:', req.body);
 
     // Ensure that the `updateUser` method is returning a promise
     authService.updateUser(req)
         .then(response => {
             // Log response for debugging
-            console.log('Response from updateUser:', response);
+            //console.log('Response from updateUser:', response);
 
             // Return the response in JSON format
             res.status(response.status).json(response);

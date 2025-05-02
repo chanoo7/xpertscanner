@@ -49,6 +49,25 @@ router.post('/saveproductionplan', async (req, res, next) => {
 });
 
 
+// GET: All production plans with associated data
+router.get('/getproductionplan', async (req, res, next) => {
+  try {
+    const productionplans = await ProductionPlans.findAll({
+      include: [
+        { model: Styles, as: 'style' },
+        { model: RouteMaps, as: 'routeMap' },
+        { model: Processes, as: 'process' },
+        { model: SubProcesses, as: 'subProcess' },
+        { model: Positions, as: 'positions' }
+      ],
+      order: [['id', 'DESC']] // Optional: sort newest first
+    });
+
+    res.json(productionplans); // Send full JSON array
+  } catch (err) {
+    next(err);
+  }
+});
 
 
 // GET: All styles with associated routes

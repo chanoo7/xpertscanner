@@ -7,10 +7,11 @@ module.exports = {
       { id: 2, name: "Style 2", createdAt: new Date(), updatedAt: new Date() },
       { id: 3, name: "Style 3", createdAt: new Date(), updatedAt: new Date() },
     ];
-    await queryInterface.bulkInsert("Styles", styles);
+    console.log('Seeding styles:', styles);
+    await queryInterface.bulkInsert("styles", styles);
   },
 
   async down(queryInterface, Sequelize) {
-    await queryInterface.bulkDelete("Styles", null, {});
+    await queryInterface.bulkDelete("styles", null, {});
   },
 };

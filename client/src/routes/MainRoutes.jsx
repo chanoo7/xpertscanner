@@ -8,6 +8,7 @@ const LineView = Loadable(lazy(() => import('pages/dashboard/LineView')));
 const QrDataView = Loadable(lazy(() => import('pages/dashboard/QrDataView')));
 const ReadMasterData = Loadable(lazy(() => import('pages/dashboard/ReadMasterData')));
 const CreateLBR = Loadable(lazy(() => import('pages/dashboard/createLBR')));
+const ViewLBR = Loadable(lazy(() => import('pages/dashboard/viewLBR')));
 const CompactIdLayout = Loadable(lazy(() => import('pages/dashboard/CompactIdLayout')));
 const Login = Loadable(lazy(() => import('pages/authentication/login')));
 const AdminDashboard = Loadable(lazy(() => import('pages/dashboard/Admin_index')));
@@ -55,6 +56,10 @@ const MainRoutes = {
     {
       path: 'create-LBR',
       element: <CreateLBR />
+    },
+    {
+      path: 'view-LBR',
+      element: <ViewLBR />
     },
     {
       path: 'line-layout-view', // Add LineView Route

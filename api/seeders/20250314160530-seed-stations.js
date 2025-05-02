@@ -43,11 +43,11 @@ module.exports = {
         });
       }
     }
-    
-    await queryInterface.bulkInsert("Stations", stations);
+    console.log(("stations", stations));
+    await queryInterface.bulkInsert("stations", stations);
   },
 
   async down(queryInterface, Sequelize) {
-    await queryInterface.bulkDelete("Stations", null, {});
+    await queryInterface.bulkDelete("stations", null, {});
   },
 };

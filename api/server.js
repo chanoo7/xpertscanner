@@ -35,6 +35,9 @@ app.options('*', cors());
 // Load routes after middleware
 //app.use('/accounts', require('./accounts/accounts.controller'));
 app.use('/auth', require('./auth/auth.controller'));
+app.use('/product', require('./product/product.controller'));
+
+
 
 // Fix: Correct `app.listen` syntax
 const PORT = process.env.PORT || 5000;

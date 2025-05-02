@@ -1,14 +1,13 @@
-const db = require('../models'); // Go up one directory
-const { users } = db;
- // adjust path as needed
+'use strict';
+
 const bcrypt = require('bcrypt');
 
-async function seedUsers() {
-  try {
+module.exports = {
+  up: async (queryInterface, Sequelize) => {
     const hashedPassword = await bcrypt.hash('Chennai@123', 10);
-    await users.bulkCreate([
+    await queryInterface.bulkInsert('users', [
       {
-        userId: 'uuid1',
+        userId: '0',
         username: '9047047147',
         password: hashedPassword,
         role: 'su',
@@ -19,14 +18,14 @@ async function seedUsers() {
         createdBy: 'system',
         updatedBy: 'system',
         isActive: 1,
-        failedAttempts: 0
-      },
-      // Add more users as needed
-    ]);
-    console.log('Users seeded!');
-  } catch (err) {
-    console.error('Failed to seed users:', err);
-  }
-}
+        failedAttempts: 0,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      }
+    ], {});
+  },
 
-seedUsers();
+  down: async (queryInterface, Sequelize) => {
+    await queryInterface.bulkDelete('users', { username: '9047047147' }, {});
+  }
+};

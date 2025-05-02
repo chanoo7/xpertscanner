@@ -79,6 +79,14 @@ const dashboard = {
       icon: icons.QrCodeIcon,
       breadcrumbs: false,
       visible: isVisibleToAll
+    },{
+      id: 'view-LBR',
+      title: 'view-LBR',
+      type: 'item',
+      url: '/view-LBR',
+      icon: icons.QrCodeIcon,
+      breadcrumbs: false,
+      visible: isVisibleToAll
     },
     {
       id: 'LineLayout',

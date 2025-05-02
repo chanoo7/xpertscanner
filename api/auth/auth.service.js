@@ -118,7 +118,7 @@ async function register(req) {
     try {
         const currentUserId = req.user.id;
         const user = req.body;
-        console.log(user);
+        //console.log(user);
         // Check if username already exists
         const existingUser = await db.users.findOne({ where: { username: user.username } });
         if (existingUser) {
@@ -171,7 +171,7 @@ async function login(req) {
             include: { model: db.contacts, as: 'contact' } 
         });
 
-        console.log(user)
+        //console.log(user)
 
         if (!user) {
             return { status: 401, message: "Invalid username or password." };
