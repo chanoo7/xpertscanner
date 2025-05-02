@@ -15,7 +15,7 @@ import { LocalizationProvider, DatePicker } from "@mui/x-date-pickers";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 import axios from "axios";
 
-export default function createLBR() {
+export default function ReadMasterData() {
   const [styles, setStyles] = useState([]);
   const [styleRouteMaps, setStyleRouteMaps] = useState([]);
   const [processes, setProcesses] = useState([]);
@@ -24,9 +24,12 @@ export default function createLBR() {
   const [formData, setFormData] = useState({
     styleId: "",
     styleRouteMapId: "",
+    processId: "",
+    subProcessId: "",
     line: 1,
     productionPlanFrom: null,
     productionPlanEnd: null,
+    inputStyle: "",
     noOfPositions: 50,
     overallTargetQuantity: 0,
   });
@@ -197,30 +200,24 @@ export default function createLBR() {
     fetchStyleMasters();
   }, []);
 
-  const handleSubmit = async () => {
+  const handleSubmit = () => {
     if (
       formData.productionPlanEnd &&
       formData.productionPlanFrom &&
-      new Date(formData.productionPlanEnd) < new Date(formData.productionPlanFrom)
+      formData.productionPlanEnd < formData.productionPlanFrom
     ) {
       alert("End date must be after start date");
       return;
     }
-  
+
     setIsCreating(true);
-  
-    try {
-      const response = await axios.post(`${import.meta.env.VITE_API_URL}/product/saveproductionplan`, formData);
+
+    setTimeout(() => {
       console.log("Submitted:", formData);
-      alert(response.data.message || "Production Plan Created!");
-    } catch (err) {
-      console.error("Error saving data:", err);
-      alert("Failed to save production plan.");
-    } finally {
       setIsCreating(false);
-    }
+      alert("LBR Created!");
+    }, 1000);
   };
-  
 
   return (
     <LocalizationProvider dateAdapter={AdapterDateFns}>
@@ -244,7 +241,7 @@ export default function createLBR() {
           }}
         >
           <Typography variant="h5" align="center" gutterBottom fontWeight="600">
-            Create LBR Data
+            Read Master Data
           </Typography>
 
           <Stack spacing={2}>
@@ -278,7 +275,7 @@ export default function createLBR() {
               </Select>
             </FormControl>
 
-            {/* <FormControl fullWidth size="small">
+            <FormControl fullWidth size="small">
               <InputLabel>Process</InputLabel>
               <Select
                 value={formData.processId}
@@ -306,7 +303,7 @@ export default function createLBR() {
                   </MenuItem>
                 ))}
               </Select>
-            </FormControl> */}
+            </FormControl>
             {/* Line Selection */}
             <FormControl fullWidth size="small">
               <InputLabel>Line</InputLabel>
@@ -361,14 +358,14 @@ export default function createLBR() {
               slotProps={{ textField: { fullWidth: true, size: "small" } }}
             />
 
-            <Button
+            {/* <Button
               variant="contained"
               onClick={handleSubmit}
               fullWidth
               disabled={isCreating}
             >
               {isCreating ? <CircularProgress size={24} /> : "Create LBR"}
-            </Button>
+            </Button> */}
           </Stack>
         </Box>
       </Box>

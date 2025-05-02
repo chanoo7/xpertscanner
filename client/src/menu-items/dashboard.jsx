@@ -63,8 +63,17 @@ const dashboard = {
       visible: isVisibleToAll
     },
     {
+      id: 'read-master-data',
+      title: 'read-master-data',
+      type: 'item',
+      url: '/read-master-data',
+      icon: icons.QrCodeIcon,
+      breadcrumbs: false,
+      visible: isVisibleToAll
+    },
+    {
       id: 'create-LBR',
-      title: 'Create-LBR',
+      title: 'create-LBR',
       type: 'item',
       url: '/create-LBR',
       icon: icons.QrCodeIcon,

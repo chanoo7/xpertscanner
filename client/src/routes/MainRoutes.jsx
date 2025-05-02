@@ -6,7 +6,8 @@ import AdminRoute from 'components/AdminRoute';
 const DashboardDefault = Loadable(lazy(() => import('pages/dashboard/product-monitoring')));
 const LineView = Loadable(lazy(() => import('pages/dashboard/LineView')));
 const QrDataView = Loadable(lazy(() => import('pages/dashboard/QrDataView')));
-const CreateLBR = Loadable(lazy(() => import('pages/dashboard/CreateLBR')));
+const ReadMasterData = Loadable(lazy(() => import('pages/dashboard/ReadMasterData')));
+const CreateLBR = Loadable(lazy(() => import('pages/dashboard/createLBR')));
 const CompactIdLayout = Loadable(lazy(() => import('pages/dashboard/CompactIdLayout')));
 const Login = Loadable(lazy(() => import('pages/authentication/login')));
 const AdminDashboard = Loadable(lazy(() => import('pages/dashboard/Admin_index')));
@@ -48,7 +49,11 @@ const MainRoutes = {
       element: <QrDataView />
     },
     {
-      path: 'create-LBR', // Add LineView Route
+      path: 'read-master-data',
+      element: <ReadMasterData />
+    },
+    {
+      path: 'create-LBR',
       element: <CreateLBR />
     },
     {
