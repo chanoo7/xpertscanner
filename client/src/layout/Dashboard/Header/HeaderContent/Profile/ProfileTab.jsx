@@ -35,7 +35,7 @@ const userData = JSON.parse(localStorage.getItem("userData"));
   //console.log(accessToken)
   try {
     const response = await axios.post(
-      `${process.env.REACT_APP_API_URL}/auth/logout`,
+      `${import.meta.env.VITE_API_URL}/auth/logout`,
       {}, // No need for refreshToken in body since it's in the cookie
       {
         headers: { 'Authorization': `Bearer ${accessToken}` }, // Bearer token in headers

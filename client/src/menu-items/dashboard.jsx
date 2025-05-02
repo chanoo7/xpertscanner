@@ -1,22 +1,23 @@
-import { DashboardOutlined, UserSwitchOutlined } from '@ant-design/icons';
-import  FormatLineSpacingIcon from '@mui/icons-material/FormatLineSpacing';
+import { DashboardOutlined } from '@ant-design/icons';
+import FormatLineSpacingIcon from '@mui/icons-material/FormatLineSpacing';
 import QrCodeIcon from '@mui/icons-material/QrCode';
 import ViewModuleIcon from '@mui/icons-material/ViewModule';
-// icons
+
+// Icons
 const icons = {
   DashboardOutlined,
   FormatLineSpacingIcon,
   QrCodeIcon,
-  ViewModuleIcon 
+  ViewModuleIcon
 };
 
-// Function to safely get user role from localStorage
+// Get role from localStorage
 const getUserRole = () => {
   try {
     const userData = localStorage.getItem("userData");
-    if (!userData) return null; // Return null if no user data exists
+    if (!userData) return null;
     const parsedData = JSON.parse(userData);
-    return parsedData?.role || null; // Ensure role is returned properly
+    return parsedData?.role || null;
   } catch (error) {
     console.error("Error parsing userData:", error);
     return null;
@@ -24,9 +25,8 @@ const getUserRole = () => {
 };
 
 const userRole = getUserRole();
+const isVisibleToAll = ['su', 'admin', 'user'].includes(userRole);
 
-
-// ==============================|| MENU ITEMS - DASHBOARD ||============================== //
 const dashboard = {
   id: 'group-dashboard',
   title: 'Navigation',
@@ -36,44 +36,49 @@ const dashboard = {
       id: 'dashboard',
       title: 'Dashboard',
       type: 'item',
-      url: (() => { // Use an IIFE to determine the URL dynamically
-        if (userRole === 'su' || userRole === 'admin') {
-          return '/dashboard/admin';
-        } else if (userRole == 'user') { 
-          return '/dashboard/default';
-        } else {
-          return '/login'; // Redirect to /login if userRole is null or undefined
-        }
+      url: (() => {
+        if (userRole === 'su' || userRole === 'admin') return '/dashboard/admin';
+        if (userRole === 'user') return '/dashboard/default';
+        return '/login';
       })(),
       icon: icons.DashboardOutlined,
       breadcrumbs: false
     },
     {
-      id: 'line-view', // Add LineView menu item
+      id: 'line-view',
       title: 'Line View',
       type: 'item',
       url: '/line-view',
       icon: icons.FormatLineSpacingIcon,
       breadcrumbs: false,
-      visible: userRole === 'su' || userRole === 'admin' || userRole === 'user' // Make LineView visible for all roles
+      visible: isVisibleToAll
     },
     {
-      id: 'QRData', // Add LineView menu item
+      id: 'QRData',
       title: 'QRData-view',
       type: 'item',
       url: '/qr-data-view',
       icon: icons.QrCodeIcon,
       breadcrumbs: false,
-      visible: userRole === 'su' || userRole === 'admin' || userRole === 'user' // Make LineView visible for all roles
+      visible: isVisibleToAll
     },
     {
-      id: 'LineLayout', // Add LineView menu item
+      id: 'create-LBR',
+      title: 'Create-LBR',
+      type: 'item',
+      url: '/create-LBR',
+      icon: icons.QrCodeIcon,
+      breadcrumbs: false,
+      visible: isVisibleToAll
+    },
+    {
+      id: 'LineLayout',
       title: 'LineLayout-view',
       type: 'item',
       url: '/line-layout-view',
       icon: icons.ViewModuleIcon,
       breadcrumbs: false,
-      visible: userRole === 'su' || userRole === 'admin' || userRole === 'user' // Make LineView visible for all roles
+      visible: isVisibleToAll
     }
   ]
 };
