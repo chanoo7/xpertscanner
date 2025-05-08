@@ -5,12 +5,25 @@ import {
   Card,
   CircularProgress,
   Box,
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogActions,
+  Button,
+  TextField,
+  MenuItem,
 } from "@mui/material";
 import axios from "axios";
+
+const processOptions = ["PREP", "CASE", "SEMI FINISH", "FINAL EDGE INKING", "INSPECT", "PASS", "REWORK"];
 
 function ViewLBR() {
   const [lbrData, setLbrData] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [selectedPosition, setSelectedPosition] = useState(null);
+  const [processMap, setProcessMap] = useState({});
+  const [scannerInput, setScannerInput] = useState("");
+  const [scannedPositions, setScannedPositions] = useState([]);
 
   useEffect(() => {
     fetchLBRData();
@@ -19,7 +32,7 @@ function ViewLBR() {
   const fetchLBRData = async () => {
     try {
       const res = await axios.get(`${import.meta.env.VITE_API_URL}/product/getproductionplan`);
-      const latest = res.data[res.data.length - 1]; // Get last record
+      const latest = res.data[res.data.length - 1];
       setLbrData(latest);
     } catch (err) {
       console.error("Error fetching LBR:", err);
@@ -35,6 +48,24 @@ function ViewLBR() {
       else right.push(i);
     }
     return [left, right];
+  };
+
+  const handleBoxClick = (pos) => {
+    setSelectedPosition(pos);
+  };
+
+  const handleProcessSelect = (process) => {
+    setProcessMap((prev) => ({ ...prev, [selectedPosition]: process }));
+    setSelectedPosition(null);
+  };
+
+  const handleScanInput = () => {
+    const positions = scannerInput
+      .split(",")
+      .map((num) => parseInt(num.trim()))
+      .filter((n) => !isNaN(n));
+    setScannedPositions(positions);
+    setScannerInput("");
   };
 
   if (loading) return <CircularProgress />;
@@ -55,7 +86,17 @@ function ViewLBR() {
       <Typography><strong>From:</strong> {new Date(lbrData.productionPlanFrom).toLocaleDateString()}</Typography>
       <Typography><strong>To:</strong> {new Date(lbrData.productionPlanEnd).toLocaleDateString()}</Typography>
 
-      <Grid container spacing={2} sx={{ mt: 3 }}>
+      <Box sx={{ my: 3 }}>
+        <TextField
+          label="Scanner Input (e.g., 1,3,5)"
+          value={scannerInput}
+          onChange={(e) => setScannerInput(e.target.value)}
+          onBlur={handleScanInput}
+          fullWidth
+        />
+      </Box>
+
+      <Grid container spacing={2}>
         <Grid item xs={6}>
           <Typography variant="h6">Left (Odd Positions)</Typography>
           {left.map((pos) => (
@@ -64,13 +105,16 @@ function ViewLBR() {
               sx={{
                 p: 2,
                 mb: 1,
-                bgcolor: "#e3f2fd",
+                bgcolor: scannedPositions.includes(pos) ? "#fff3e0" : "#e3f2fd",
                 border: "1px solid #ccc",
                 borderRadius: 1,
                 textAlign: "center",
+                cursor: "pointer",
               }}
+              onClick={() => handleBoxClick(pos)}
             >
-              Position {pos}
+              Position {pos} <br />
+              {processMap[pos] && <strong>Process:</strong>} {processMap[pos] || "Click to assign"}
             </Box>
           ))}
         </Grid>
@@ -83,17 +127,41 @@ function ViewLBR() {
               sx={{
                 p: 2,
                 mb: 1,
-                bgcolor: "#fce4ec",
+                bgcolor: scannedPositions.includes(pos) ? "#fff3e0" : "#fce4ec",
                 border: "1px solid #ccc",
                 borderRadius: 1,
                 textAlign: "center",
+                cursor: "pointer",
               }}
+              onClick={() => handleBoxClick(pos)}
             >
-              Position {pos}
+              Position {pos} <br />
+              {processMap[pos] && <strong>Process:</strong>} {processMap[pos] || "Click to assign"}
             </Box>
           ))}
         </Grid>
       </Grid>
+
+      <Dialog open={selectedPosition !== null} onClose={() => setSelectedPosition(null)}>
+        <DialogTitle>Select Process for Position {selectedPosition}</DialogTitle>
+        <DialogContent>
+          <TextField
+            select
+            fullWidth
+            label="Process"
+            onChange={(e) => handleProcessSelect(e.target.value)}
+          >
+            {processOptions.map((process) => (
+              <MenuItem key={process} value={process}>
+                {process}
+              </MenuItem>
+            ))}
+          </TextField>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={() => setSelectedPosition(null)}>Cancel</Button>
+        </DialogActions>
+      </Dialog>
     </Card>
   );
 }

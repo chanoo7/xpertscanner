@@ -89,6 +89,15 @@ const dashboard = {
       visible: isVisibleToAll
     },
     {
+      id: 'productionData',
+      title: 'productionData',
+      type: 'item',
+      url: '/productionData',
+      icon: icons.ViewModuleIcon,
+      breadcrumbs: false,
+      visible: isVisibleToAll
+    },
+    {
       id: 'LineLayout',
       title: 'LineLayout-view',
       type: 'item',
