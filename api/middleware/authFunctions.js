@@ -5,13 +5,17 @@ require('dotenv').config();
 
 const db = require('../models/index.js');
 
+// const authService  = require('../auth/auth.service.js')
+
 
 // module.exports = generateRefreshToken;
 
 
 function generateAccessToken(user) {
     return jwt.sign({ id: user.id, role: user.role, type: user.type }, process.env.JWT_ACCESS_SECRET, {
+      // expiresIn: process.env.JWT_ACCESS_EXPIRATION,
       expiresIn: process.env.JWT_ACCESS_EXPIRATION,
+
     });
   }
   
@@ -25,6 +29,8 @@ function generateRefreshToken(user) {
 
 
 function verifyToken(token, type) {
+  let payload ="";
+  let message ="";
 
   if(type=='access')  var secret = process.env.JWT_ACCESS_SECRET;
         
@@ -35,12 +41,23 @@ function verifyToken(token, type) {
     if(decoded.id ) return decoded;
   }catch(error){
         // Handle errors (invalid token, expired token, etc.)
+
         if (error.name === 'TokenExpiredError') {
+          if(type == 'refresh'){
+            blacklistToken(token,"refresh");
+            payload = jwt.verify(token, process.env.JWT_REFRESH_SECRET, {ignoreExpiration: true} );
+            db.users.update({isLoggedin : false}, {where :{id : payload.id}});
+          }
+
           console.error('Token expired');
+          message = "Refresh Token Expired. Logged out from current session";
+
         } else {
           console.error('Invalid token:', error.message);
+          message = "Refresh Token Invalid ";
+
         }
-        return { status:403, message:error.message}
+        return { status:403, message:message}
       }  
 }
 
@@ -50,17 +67,28 @@ async function authenticate(req, res, next){
     const token = req.headers['authorization']?.split(' ')[1];
 
     if (!token) return res.status(401).json({ message: 'Token required' });
-
   
     const blacklistedToken = await isBlackListed(token);
 
-    if(blacklistedToken) res.status(403).json({ status: 403, message: 'token is blacklisted' }); //return { status:403, message: ' token is blacklisted' };
+    if(blacklistedToken) {
+      return res.status(403).json({ status: 403, message: 'token is blacklisted' }); //return { status:403, message: ' token is blacklisted' };
+    } 
 
-    jwt.verify(token, process.env.JWT_ACCESS_SECRET, (err, user) => {
-        if (err) return res.status(401).json({ message: 'Invalid token' });
+    jwt.verify(token, process.env.JWT_ACCESS_SECRET, (error, user) => {
+      let message ="";
+        if (error){
+          console.log(error)
+          if (error.name === 'TokenExpiredError') {
+            console.error('Token expired');
+            message = "Access Token Expired";
+          } else {
+            console.error('Invalid token:', error.message);
+            message = "Access Token Invalid";
+          }          
+          return res.status(401).json({ status: 401, message: message});
+        } 
         user.accessToken = token;
         req.user = user;
-        //console.log(user  )
         next();
     });
 

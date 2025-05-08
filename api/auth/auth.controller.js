@@ -12,6 +12,8 @@ const nodemailer = require('nodemailer');
 
 // routes
 router.post('/register',validateRegistration, authenticate, checkRole('su'), register);
+router.post('/registerSU',validateRegistration,  registerSU);
+
 
 router.post('/login', validateLogin, login);
 
@@ -21,7 +23,6 @@ router.post('/login', validateLogin, login);
 router.post('/logout', authenticate, logout);
 router.post('/refreshToken', refreshToken);
 router.post('/updateUser', authenticate, checkRole('su'), updateUser);
-// router.post('/logout', logout);
 router.post('/updatePassword', validateUpdatePassword, authenticate, updatePassword);
 router.post('/resetPassword', resetPassword);
 router.post('/send-otp-email', sendOtpEmail);
@@ -37,7 +38,7 @@ router.post('/disableUser', validateUser, authenticate,checkRole('su'), disableU
 // router.get('/send-otp-by-email',authenticate,getContacInfo,sendOtpByEmail);
 // router.get('/verifyOtp',validateOtp,authenticate,getContacInfo,verifyOtp);
 
-router.post('/listUsers',authenticate,checkRole(['admin', 'su']),  listUsers);
+router.get('/listUsers',authenticate,checkRole(['admin', 'su']),  listUsers);
 
 
 const OTP_EXPIRY_TIME = 5 * 60 * 1000; // 5 minutes
@@ -289,11 +290,23 @@ function validateRegistration(req, res, next){
 
 }
 
+
+
+
+
 function register(req, res, next) {
 
-    authService.register(req)
-    .then(response => res.status(response.status).json(response))
-    .catch(next);
+  authService.register(req)
+  .then(response => res.status(response.status).json(response))
+  .catch(next);
+
+}
+
+function registerSU(req, res, next) {
+
+  authService.registerSU(req)
+  .then(response => res.status(response.status).json(response))
+  .catch(next);
 
 }
 
@@ -304,7 +317,7 @@ function validateLogin(req, res, next){
         password: Joi.string().required()
     });
 
-    validateRequest(req, next, schema);
+    validateRequest(req, res, next, schema);
 
 }
 
@@ -312,16 +325,16 @@ function login(req, res, next) {
     
     authService.login(req.body)
         .then((message) =>  {
-            const allowedOrigins = ['localhost', '192.168.0.105', '192.168.1.12'];
+            // const allowedOrigins = ['localhost', '192.168.0.105', '192.168.1.12'];
 
             // Dynamically choose the domain based on the request origin
-            const currentDomain = allowedOrigins.includes(req.hostname) ? req.hostname : 'localhost';
+            // const currentDomain = allowedOrigins.includes(req.hostname) ? req.hostname : 'localhost';
             
             res.cookie("refreshToken", message.refreshToken, { 
                 httpOnly: true, 
                 secure: true, // Set to `true` in production if you're using HTTPS
-                sameSite: 'None', // This allows cross-origin cookies
-                domain: currentDomain, // Set domain based on the request hostname
+                // sameSite: 'None', // This allows cross-origin cookies
+                // domain: currentDomain, // Set domain based on the request hostname
                 // maxAge: 60 * 60 * 1000 // Example expiry (1 hour)
             });
 

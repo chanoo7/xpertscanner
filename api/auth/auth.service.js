@@ -12,6 +12,7 @@ const { func, ref } = require('joi');
 
 module.exports = {   
  register,
+ registerSU,
  login,
  refreshToken,
  logout,
@@ -163,6 +164,57 @@ async function register(req) {
     }
 }
 
+
+async function registerSU(req) {
+    try {
+        const currentUserId = 0;
+        const user = req.body;
+        //console.log(user);
+        // Check if username already exists
+        const existingUser = await db.users.findOne({ where: { username: user.username } });
+        if (existingUser) {
+            return { status: 400, message: `Username "${user.username}" is already taken` };
+        }
+
+        // Hash password before saving
+        if (user.password) {
+            user.password = await bcrypt.hash(user.password, 10);
+        }
+
+        user.userId = 1;
+        user.createdBy = currentUserId;
+        user.updatedBy = currentUserId;
+
+        // Save user to DB
+        await db.users.create(user);
+
+        // Create Contact Data
+        const contactData = {
+            contactId: user.userId,  // Use userId as contactId
+            legalName: user.firstName+" "+user.lastName, // Adjust if needed
+            assignedEmployer: null, 
+            assignedSites: null, 
+            designation: null, 
+            personalInfo: [{ firstName: user.firstName, lastName: user.lastName }], 
+            employmentInfo: null, 
+            bankingInfo: null, 
+            miscInfo: null, 
+            createdBy: currentUserId, 
+            updatedBy: currentUserId
+        };
+
+        // Save contact to DB
+        await db.contacts.create(contactData);
+
+        return { status: 201, message: `Username "${user.username}" was created successfully` };
+
+    } catch (error) {
+        console.error("Error creating user:", error);
+        return { status: 500, message: "Unable to create user." };
+    }
+}
+
+
 async function login(req) {
     try {
         // Find user including account association
@@ -243,7 +295,10 @@ async function refreshToken(req) {
 
     const refreshToken = req.cookies.refreshToken;
     
-    if (!refreshToken) return {status:401, message:'Required : Refresh Token'} 
+    if (!refreshToken) {
+        
+        return {status:401, message:'Required : Refresh Token'} 
+    }
 
     // const refreshToken = req.refreshToken;
     // const token = await db.blacklistedTokens.findOne({ where:{ token : refreshToken}});

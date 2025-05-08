@@ -4,3 +4,4 @@ insert into `accounts` values (1, '49f47c9a-f8f8-4cb4-a24e-10648b68d8aa', 'My Le
 
 insert into `accounts` values (2, '49f47c9a-f8f8-4cb4-a24c-10648b68d8ff', 'My Seconde Legal Name', '{"city":"chennai"}', '{"gst":"2345678901"}', '[{"index":"0",account_no":"1234567890"},{"index":"1",account_no":"2345678901"}]',true, false ,now(), now());
 
+npx npx sequelize-cli model:generate --name fqc --attributes code:string,status:string,component:string,remark:json,media:json
