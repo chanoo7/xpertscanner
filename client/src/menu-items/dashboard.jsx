@@ -44,50 +44,50 @@ const dashboard = {
       icon: icons.DashboardOutlined,
       breadcrumbs: false
     },
-    {
-      id: 'line-view',
-      title: 'Line View',
-      type: 'item',
-      url: '/line-view',
-      icon: icons.FormatLineSpacingIcon,
-      breadcrumbs: false,
-      visible: isVisibleToAll
-    },
-    {
-      id: 'QRData',
-      title: 'QRData-view',
-      type: 'item',
-      url: '/qr-data-view',
-      icon: icons.QrCodeIcon,
-      breadcrumbs: false,
-      visible: isVisibleToAll
-    },
-    {
-      id: 'read-master-data',
-      title: 'read-master-data',
-      type: 'item',
-      url: '/read-master-data',
-      icon: icons.QrCodeIcon,
-      breadcrumbs: false,
-      visible: isVisibleToAll
-    },
-    {
-      id: 'create-LBR',
-      title: 'create-LBR',
-      type: 'item',
-      url: '/create-LBR',
-      icon: icons.QrCodeIcon,
-      breadcrumbs: false,
-      visible: isVisibleToAll
-    },{
-      id: 'view-LBR',
-      title: 'view-LBR',
-      type: 'item',
-      url: '/view-LBR',
-      icon: icons.QrCodeIcon,
-      breadcrumbs: false,
-      visible: isVisibleToAll
-    },
+    // {
+    //   id: 'line-view',
+    //   title: 'Line View',
+    //   type: 'item',
+    //   url: '/line-view',
+    //   icon: icons.FormatLineSpacingIcon,
+    //   breadcrumbs: false,
+    //   visible: isVisibleToAll
+    // },
+    // {
+    //   id: 'QRData',
+    //   title: 'QRData-view',
+    //   type: 'item',
+    //   url: '/qr-data-view',
+    //   icon: icons.QrCodeIcon,
+    //   breadcrumbs: false,
+    //   visible: isVisibleToAll
+    // },
+    // {
+    //   id: 'read-master-data',
+    //   title: 'read-master-data',
+    //   type: 'item',
+    //   url: '/read-master-data',
+    //   icon: icons.QrCodeIcon,
+    //   breadcrumbs: false,
+    //   visible: isVisibleToAll
+    // },
+    // {
+    //   id: 'create-LBR',
+    //   title: 'create-LBR',
+    //   type: 'item',
+    //   url: '/create-LBR',
+    //   icon: icons.QrCodeIcon,
+    //   breadcrumbs: false,
+    //   visible: isVisibleToAll
+    // },{
+    //   id: 'view-LBR',
+    //   title: 'view-LBR',
+    //   type: 'item',
+    //   url: '/view-LBR',
+    //   icon: icons.QrCodeIcon,
+    //   breadcrumbs: false,
+    //   visible: isVisibleToAll
+    // },
     {
       id: 'productionData',
       title: 'productionData',
@@ -97,15 +97,15 @@ const dashboard = {
       breadcrumbs: false,
       visible: isVisibleToAll
     },
-    {
-      id: 'LineLayout',
-      title: 'LineLayout-view',
-      type: 'item',
-      url: '/line-layout-view',
-      icon: icons.ViewModuleIcon,
-      breadcrumbs: false,
-      visible: isVisibleToAll
-    }
+    // {
+    //   id: 'LineLayout',
+    //   title: 'LineLayout-view',
+    //   type: 'item',
+    //   url: '/line-layout-view',
+    //   icon: icons.ViewModuleIcon,
+    //   breadcrumbs: false,
+    //   visible: isVisibleToAll
+    // }
   ]
 };
 

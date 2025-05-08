@@ -13,8 +13,8 @@ const ProductionData = Loadable(lazy(() => import('pages/dashboard/productionDat
 const CompactIdLayout = Loadable(lazy(() => import('pages/dashboard/CompactIdLayout')));
 const Login = Loadable(lazy(() => import('pages/authentication/login')));
 const AdminDashboard = Loadable(lazy(() => import('pages/dashboard/Admin_index')));
-const ViewDevices = Loadable(lazy(() => import('pages/devices/viewDevices')));
-const AddDevice = Loadable(lazy(() => import('pages/devices/addDevice')));
+// const ViewDevices = Loadable(lazy(() => import('pages/devices/viewDevices')));
+// const AddDevice = Loadable(lazy(() => import('pages/devices/addDevice')));
 const ViewReports = Loadable(lazy(() => import('pages/reports/viewReports')));
 const SamplePage = Loadable(lazy(() => import('pages/extra-pages/sample-page')));
 const Color = Loadable(lazy(() => import('pages/component-overview/color')));
@@ -70,19 +70,19 @@ const MainRoutes = {
       path: 'line-layout-view', // Add LineView Route
       element: <CompactIdLayout />
     },
-    {
-      path: 'devices',
-      children: [
-        {
-          path: 'viewDevices',
-          element: <ViewDevices />
-        },
-        {
-          path: 'addDevice',
-          element: <AddDevice />
-        }
-      ]
-    },
+    // {
+    //   path: 'devices',
+    //   children: [
+    //     {
+    //       path: 'viewDevices',
+    //       element: <ViewDevices />
+    //     },
+    //     {
+    //       path: 'addDevice',
+    //       element: <AddDevice />
+    //     }
+    //   ]
+    // },
     {
       path: 'reports',
       children: [

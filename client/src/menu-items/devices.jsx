@@ -8,29 +8,34 @@ SisternodeOutlined,
 };
 
 // ==============================|| MENU ITEMS - EXTRA PAGES ||============================== //
-
 const pages = {
   id: 'devices',
-  title: 'Devices',
+  //title: 'Devices',
   type: 'group',
-  children: [
-    {
-      id: 'showDevices',
-      title: 'Show Devices',
-      type: 'item',
-      url: '/devices/viewDevices',
-      icon: icons.BarsOutlined,
-      target: false
-    },
-    {
-      id: 'registerDevice',
-      title: 'Register a New Device',
-      type: 'item',
-      url: '/devices/addDevice',
-      icon: icons.SisternodeOutlined,
-      target: false
-    }
-  ]
+  children: [] // empty children = no visible menu items
 };
+// const pages = {
+//   id: 'devices',
+//   title: 'Devices',
+//   type: 'group',
+//   children: [
+//     {
+//       id: 'showDevices',
+//       title: 'Show Devices',
+//       type: 'item',
+//       url: '/devices/viewDevices',
+//       icon: icons.BarsOutlined,
+//       target: false
+//     },
+//     {
+//       id: 'registerDevice',
+//       title: 'Register a New Device',
+//       type: 'item',
+//       url: '/devices/addDevice',
+//       icon: icons.SisternodeOutlined,
+//       target: false
+//     }
+//   ]
+// };
 
 export default pages;
