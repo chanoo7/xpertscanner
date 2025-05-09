@@ -36,12 +36,14 @@ export default function AuthLogin({ isDemo = false }) {
         submit: null,
       }}
       validationSchema={Yup.object().shape({
-        username: Yup.string()
-          .matches(
-            /^[^\s@]+@[^\s@]+\.[^\s@]+$|^\d{10}$/,
-            "Enter a valid email or phone number"
-          )
-          .required("Email or Phone is required"),
+        // username: Yup.string()
+        //   .matches(
+        //     /^[^\s@]+@[^\s@]+\.[^\s@]+$|^\d{10}$/,
+        //     "Enter a valid email or phone number"
+        //   )
+        //   .required("Email or Phone is required"),
+          username: Yup.string().required("Email or Phone is required"),
+
         password: Yup.string().max(255).required("Password is required"),
       })}
 
