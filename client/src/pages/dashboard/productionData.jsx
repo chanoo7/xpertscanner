@@ -1,6 +1,25 @@
-import React, { useState } from 'react';
-import { Box, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography, Paper, TextField } from '@mui/material';
+import React, { useEffect, useState, useRef } from 'react';
+import {
+  Table, TableHead, TableRow, TableCell, TableBody, Paper, TextField, Box, Typography
+} from '@mui/material';
 import axios from 'axios';
+
+// Map of stationId to stage name
+const stageMap = {
+  '94A99003C00C': 'prep',   // Heating Patti
+  '94A99003C190': 'semi',   // Embossing Pkt
+  '94A99003C174': 'case',   // Case Edging
+  '94A99003BF5C': 'edge',   // FINAL Lamping 1
+};
+
+const stageHeaders = {
+  prep: 'Heating Patti',
+  semi: 'Embossing Pkt',
+  case: 'Case Edging',
+  edge: 'FINAL Lamping 1',
+};
+
+const initialRow = { prep: 0, semi: 0, case: 0, edge: 0 };
 
 const getCellColor = (value) => {
   if (value >= 40) return '#90ee90'; // Green
@@ -8,92 +27,103 @@ const getCellColor = (value) => {
   return '#ff6666'; // Red
 };
 
-const initialRow = {
-  hour: '',
-  prep: '',
-  case: '',
-  semi: '',
-  edge: '',
-  inspect: '',
-  pass: '',
-  rework: '',
-  codes: '',
-};
-
-
-
-
-export default function ProductionDisplayBoard() {
-  const [rows, setRows] = useState(
-    Array(8).fill().map((_, i) => ({ ...initialRow, hour: `${i + 1}th Hour` }))
-  );
+export default function HourlyProductionTable() {
+  const [rows, setRows] = useState(Array.from({ length: 8 }, () => ({ ...initialRow })));
+  const lastProcessedKeyRef = useRef(new Set());
   const [targetQty, setTargetQty] = useState('');
 
-  const perHourTarget = targetQty ? Math.ceil(parseInt(targetQty) / 8) : 0;
+  // Load saved target quantity
+  useEffect(() => {
+    const savedQty = localStorage.getItem('targetQty');
+    if (savedQty) setTargetQty(parseInt(savedQty));
+  }, []);
 
-
-  const handleScan = async (scannerType, hourIndex = 0) => {
-    try {
-      const res = await axios.get(`${import.meta.env.VITE_API_URL}/auth/api/mqtt-data`);
-      const scannedValue = res.data?.count || 1;
-
-      setRows((prevRows) =>
-        prevRows.map((row, index) =>
-          index === hourIndex
-            ? { ...row, [scannerType]: (parseInt(row[scannerType]) || 0) + scannedValue }
-            : row
-        )
-      );
-    } catch (error) {
-      console.error('Error fetching MQTT data:', error);
-    }
+  // Save target quantity to localStorage
+  const saveTargetQty = (qty) => {
+    localStorage.setItem('targetQty', qty);
+    setTargetQty(qty);
   };
 
+  const perHourTarget = targetQty ? parseInt(targetQty) : 0; // Plan target per hour
 
-  const calculateTotal = (field) =>
-    rows.reduce((acc, row) => acc + (parseInt(row[field]) || 0), 0);
-  
-  const totalRow = {
-    hour: 'Total',
-    prep: calculateTotal('prep'),
-    case: calculateTotal('case'),
-    semi: calculateTotal('semi'),
-    edge: calculateTotal('edge'),
-    inspect: calculateTotal('inspect'),
-    pass: calculateTotal('pass'),
-    rework: calculateTotal('rework'),
-    codes: calculateTotal('codes'),
+  // Fetch data on mount and every 5 seconds
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const res = await axios.get(`${import.meta.env.VITE_API_URL}/production/listProductionData`);
+        const data = res.data;
+
+        console.log("Fetched:", data.statuses);
+
+        data.statuses.forEach(({ stationId, code, timestamp }) => {
+          const uniqueKey = `${stationId}_${code}_${timestamp}`;
+          if (!lastProcessedKeyRef.current.has(uniqueKey)) {
+            console.log("New Scan:", uniqueKey);
+            lastProcessedKeyRef.current.add(uniqueKey);
+            handleQRCodeScan(stationId, code, timestamp);
+          } else {
+            console.log("Duplicate ignored:", uniqueKey);
+          }
+        });
+      } catch (error) {
+        console.error('Fetch error:', error);
+      }
+    };
+
+    fetchData(); // Initial fetch
+    const interval = setInterval(fetchData, 5000);
+    return () => clearInterval(interval);
+  }, []);
+
+  // Handle QR code scan and update the table
+  const handleQRCodeScan = (stationId, code, timestamp) => {
+    const scanTime = new Date(parseInt(timestamp) * 1000);
+    const hour = scanTime.getHours(); // returns 0-23
+    const hourIndex = hour - 8; // 8 AM is 0th index
+
+    const stage = stageMap[stationId];
+    if (!stage || hourIndex < 0 || hourIndex >= 8) return; // out of range
+
+    setRows(prevRows => {
+      const updated = [...prevRows];
+      updated[hourIndex] = {
+        ...updated[hourIndex],
+        [stage]: (updated[hourIndex][stage] || 0) + 1,
+      };
+      return updated;
+    });
   };
-  
-  const balRow = {
-    hour: 'Bal',
-    prep: perHourTarget * 8 - totalRow.prep,
-    case: perHourTarget * 8 - totalRow.case,
-    semi: perHourTarget * 8 - totalRow.semi,
-    edge: perHourTarget * 8 - totalRow.edge,
-    inspect: perHourTarget * 8 - totalRow.inspect,
-    pass: perHourTarget * 8 - totalRow.pass,
-    rework: perHourTarget * 8 - totalRow.rework,
-    codes: perHourTarget * 8 - totalRow.codes,
+
+  // Calculate totals for each stage
+  const totals = rows.reduce((acc, row) => {
+    Object.keys(initialRow).forEach(key => {
+      acc[key] += row[key];
+    });
+    return acc;
+  }, { ...initialRow });
+
+  // Calculate balance for each stage (Total - Plan Target)
+  const balance = {
+    prep: perHourTarget - totals.prep,
+    semi: perHourTarget - totals.semi,
+    case: perHourTarget - totals.case,
+    edge: perHourTarget - totals.edge,
   };
-  
+
   return (
     <Box p={2}>
-      <Typography variant="h5" align="center" fontWeight="bold">
-        KH EXPORTS INDIA PVT LTD., (GLOVE DIVISION)
-      </Typography>
       <Typography variant="subtitle1" align="center" fontStyle="italic">
         LINE WISE DISPLAY BOARD-1
       </Typography>
 
       <Box display="flex" justifyContent="space-between" alignItems="center" mt={2} mb={2}>
         <TextField
-          label="Target Quantity"
+          label="Plan Target Qty/Hour"
           variant="outlined"
           size="small"
           type="number"
           value={targetQty}
-          onChange={(e) => setTargetQty(e.target.value)}
+          onChange={(e) => saveTargetQty(e.target.value)}
         />
         <Box display="flex" gap={2}>
           <Box bgcolor="#ff6666" px={1}> &lt;&lt; 29 </Box>
@@ -102,88 +132,55 @@ export default function ProductionDisplayBoard() {
         </Box>
       </Box>
 
-      <TableContainer component={Paper}>
+      <Paper>
         <Table size="small">
           <TableHead>
-            <TableRow >
-              <TableCell  sx={{ backgroundColor: '#59B5F7' }}>HOUR</TableCell>
-              <TableCell sx={{ border: '1px solid #ccc' }}>PREP</TableCell>
-              <TableCell sx={{ border: '1px solid #ccc' }}>CASE</TableCell>
-              <TableCell sx={{ border: '1px solid #ccc' }}>SEMI FINISH</TableCell>
-              <TableCell sx={{ border: '1px solid #ccc' }}>FINAL EDGE INKING</TableCell>
-              <TableCell sx={{ border: '1px solid #ccc' }}>INSPECT</TableCell>
-              <TableCell sx={{ border: '1px solid #ccc' }}>PASS</TableCell>
-              <TableCell sx={{ border: '1px solid #ccc' }}>REWORK</TableCell>
-              <TableCell  sx={{ backgroundColor: '#59B5F7' }}>Booked NCP Codes</TableCell>
+            <TableRow>
+              <TableCell sx={{ backgroundColor: '#59B5F7' }}><strong>HOUR</strong></TableCell>
+              {Object.values(stageHeaders).map((label, index) => (
+                <TableCell key={index} align="center" sx={{ border: '1px solid #ccc' }}>
+                  <strong>{label}</strong>
+                </TableCell>
+              ))}
             </TableRow>
           </TableHead>
           <TableBody>
-  {rows.map((row, index) => (
-    <TableRow key={index}>
-     <TableCell sx={{ border: '1px solid #ccc' }}>{row.hour}</TableCell>
-{[row.prep, row.case, row.semi, row.edge, row.inspect, row.pass, row.rework].map((val, i) => (
-  <TableCell
-    key={i}
-    sx={{ backgroundColor: val !== '' ? getCellColor(val) : undefined, border: '1px solid #ccc' }}
-  >
-    {val}
-  </TableCell>
-))}
-<TableCell sx={{ border: '1px solid #ccc' }}>{row.codes}</TableCell>
-
-    </TableRow>
-  ))}
-
-  {/* Total Row */}
-  <TableRow sx={{ backgroundColor: '#e0e0e0' }}>
-    <TableCell sx={{ border: '1px solid #ccc' }}><strong>{totalRow.hour}</strong></TableCell>
-    <TableCell sx={{ border: '1px solid #ccc' }}>{totalRow.prep}</TableCell>
-    <TableCell sx={{ border: '1px solid #ccc' }}>{totalRow.case}</TableCell>
-    <TableCell sx={{ border: '1px solid #ccc' }}>{totalRow.semi}</TableCell>
-    <TableCell sx={{ border: '1px solid #ccc' }}>{totalRow.edge}</TableCell>
-    <TableCell sx={{ border: '1px solid #ccc' }}>{totalRow.inspect}</TableCell>
-    <TableCell sx={{ border: '1px solid #ccc' }}>{totalRow.pass}</TableCell>
-    <TableCell sx={{ border: '1px solid #ccc' }}>{totalRow.rework}</TableCell>
-    <TableCell sx={{ border: '1px solid #ccc' }}>{totalRow.codes}</TableCell>
-  </TableRow>
-
-  {/* ACH / BAL Row (Header) */}
-  {/* <TableRow>
-    <TableCell></TableCell>
-    <TableCell>ACH</TableCell>
-    <TableCell>BAL</TableCell>
-    <TableCell>ACH</TableCell>
-    <TableCell>ACH</TableCell>
-    <TableCell>ACH</TableCell>
-    <TableCell>BAL</TableCell>
-    <TableCell>BAL</TableCell>
-    <TableCell></TableCell>
-  </TableRow> */}
-
-  {/* Balance Row */}
-  <TableRow sx={{ backgroundColor: '#f0f0f0' }}>
-    <TableCell sx={{ border: '1px solid #ccc' }}><strong>{balRow.hour}</strong></TableCell>
-    <TableCell sx={{ border: '1px solid #ccc' }}>{balRow.prep}</TableCell>
-    <TableCell sx={{ border: '1px solid #ccc' }}>{balRow.case}</TableCell>
-    <TableCell sx={{ border: '1px solid #ccc' }}>{balRow.semi}</TableCell>
-    <TableCell sx={{ border: '1px solid #ccc' }}>{balRow.edge}</TableCell>
-    <TableCell sx={{ border: '1px solid #ccc' }}>{balRow.inspect}</TableCell>
-    <TableCell sx={{ border: '1px solid #ccc' }}>{balRow.pass}</TableCell>
-    <TableCell sx={{ border: '1px solid #ccc' }}>{balRow.rework}</TableCell>
-    <TableCell sx={{ border: '1px solid #ccc' }}>{balRow.codes}</TableCell>
-  </TableRow>
-</TableBody>
-
+            {rows.map((row, index) => (
+              <TableRow key={index}>
+                <TableCell sx={{ border: '1px solid #ccc' }}>{index + 1}th Hour</TableCell>
+                {Object.keys(stageHeaders).map(key => (
+                  <TableCell
+                    key={key}
+                    align="center"
+                    sx={{
+                      backgroundColor: row?.[key] !== undefined ? getCellColor(row[key]) : undefined,
+                      border: '1px solid #ccc',
+                    }}
+                  >
+                    {row?.[key] ?? 0}
+                  </TableCell>
+                ))}
+              </TableRow>
+            ))}
+            <TableRow sx={{ backgroundColor: '#e0e0e0' }}>
+              <TableCell sx={{ border: '1px solid #ccc' }}><strong>Total</strong></TableCell>
+              {Object.keys(stageHeaders).map(key => (
+                <TableCell key={key} align="center" sx={{ border: '1px solid #ccc' }}>
+                  <strong>{totals[key]}</strong>
+                </TableCell>
+              ))}
+            </TableRow>
+            <TableRow sx={{ backgroundColor: '#f5f5f5' }}>
+              <TableCell sx={{ border: '1px solid #ccc' }}><strong>Balance</strong></TableCell>
+              {Object.keys(stageHeaders).map(key => (
+                <TableCell key={key} align="center" sx={{ border: '1px solid #ccc' }}>
+                  {balance[key]}
+                </TableCell>
+              ))}
+            </TableRow>
+          </TableBody>
         </Table>
-      </TableContainer>
-
-      {/* Temp Scan Buttons */}
-      <Box mt={2} display="flex" gap={2}>
-        {/* <button onClick={() => handleScan('prep', 0)}>Scan PREP</button>
-        <button onClick={() => handleScan('case', 0)}>Scan CASE</button>
-        <button onClick={() => handleScan('semi', 0)}>Scan SEMI</button>
-        <button onClick={() => handleScan('edge', 0)}>Scan EDGE</button> */}
-      </Box>
+      </Paper>
     </Box>
   );
 }

@@ -37,9 +37,9 @@ const dashboard = {
       title: 'Dashboard',
       type: 'item',
       url: (() => {
-        if (userRole === 'su' || userRole === 'admin') return '/dashboard/admin';
+        if (userRole === 'su' || userRole === 'admin') return '/dashboard/default';
         if (userRole === 'user') return '/dashboard/default';
-        return '/login';
+       // return '/login';
       })(),
       icon: icons.DashboardOutlined,
       breadcrumbs: false

@@ -12,40 +12,41 @@ app.use(cookieParser());
 
 app.set('trust proxy', true);
 
-app.use(cors());
-app.use(function(req, res, next) {
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
-  res.setHeader('Access-Control-Allow-Credentials', true);
-  next();
-});
+// app.use(cors());
+// app.use(function(req, res, next) {
+//   res.setHeader('Access-Control-Allow-Origin', '*');
+//   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+//   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+//   res.setHeader('Access-Control-Allow-Credentials', true);
+//   next();
+// });
 
 // // Fix: Remove conflicting manual CORS headers
-// const allowedOrigins = ['http://localhost:3000', '*'];
+const allowedOrigins = ['http://localhost:3000'];
 
-// app.use(
-//   cors({
-//     origin: function (origin, callback) {
-//       if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
-//         callback(null, true);
-//       } else {
-//         callback(new Error('Not allowed by CORS'));
-//       }
-//     },
-//     credentials: true,
-//     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-//     allowedHeaders: 'Origin, X-Requested-With, Content-Type, Accept, Authorization',
-//   })
-// );
+app.use(
+  cors({
+    origin: function (origin, callback) {
+      if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
+        callback(null, true);
+      } else {
+        callback(new Error('Not allowed by CORS'));
+      }
+    },
+    credentials: true,
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    allowedHeaders: 'Origin, X-Requested-With, Content-Type, Accept, Authorization',
+  })
+);
 
 // app.options('*', cors());
 
 // Load routes after middleware
 //app.use('/accounts', require('./accounts/accounts.controller'));
 app.use('/auth', require('./auth/auth.controller'));
-app.use('/product', require('./product/product.controller'));
 app.use('/fqc', require('./fqc/fqc.controller'));
+app.use('/product', require('./product/product.controller'));
+app.use('/production', require('./production/production.controller'));
 
 
 

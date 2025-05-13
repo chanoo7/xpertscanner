@@ -9,6 +9,7 @@ router.post('/saveStatus', validateFQC, saveStatus);
 router.get('/listStatus', listStatus);
 router.get('/filterStatus', filterStatus);
 
+module.exports = router;
 
 
 function validateFQC(req, res, next){    
@@ -50,4 +51,3 @@ function filterStatus(req, res, next) {
 }
 
 
-module.exports = router;

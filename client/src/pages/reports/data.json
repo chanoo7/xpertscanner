@@ -1,0 +1,793 @@
+{"leather":[
+  {
+    "code": "LTGO",
+    "description": "Leather Grain Off-Cqc"
+  },
+  {
+    "code": "LTCM",
+    "description": "Leather Color Mismatching-Cqc"
+  },
+  {
+    "code": "LTGM",
+    "description": "Leather Growth Mark-Cqc"
+  },
+  {
+    "code": "LTPH",
+    "description": "Leather Pin Holes-Cqc"
+  },
+  {
+    "code": "LTVM",
+    "description": "Leather Vein Mark-Cqc"
+  },
+  {
+    "code": "LTOP",
+    "description": "Leather Open Cut-Cqc"
+  },
+  {
+    "code": "LTLL",
+    "description": "Leather Loose Leather-Cqc"
+  },
+  {
+    "code": "LTOD",
+    "description": "Leather Open Defects-Cqc"
+  },
+  {
+    "code": "LEFM",
+    "description": "Leather Fold Mark"
+  }
+],
+"attaching":[
+  {
+    "code": "CDCH",
+    "description": "C\" Direction Change"
+  },
+  {
+    "code": "Z2PK",
+    "description": "Zipper 2D Attaching Problem-Zipper Pkt"
+  },
+  {
+    "code": "Z2DZ",
+    "description": "Zipper 2D Attaching Problem-Zipper"
+  },
+  {
+    "code": "Z3PK",
+    "description": "Zipper 3D Attaching Problem-Zipper Pkt"
+  },
+  {
+    "code": "Z3DZ",
+    "description": "Zipper 3D Attaching Problem-Zipper"
+  },
+  {
+    "code": "AUSP",
+    "description": "Attaching Uneven-Stamp Pkt"
+  },
+  {
+    "code": "AUPK",
+    "description": "Attaching Uneven-Cc Pkt"
+  },
+  {
+    "code": "AUPA",
+    "description": "Attaching Uneven-Cc Patti"
+  }
+],
+ "cleaning improper" :[
+  {
+    "code": "CIZP",
+    "description": "Cleaning Improper-Zipper Pkt"
+  },
+  {
+    "code": "CIZI",
+    "description": "Cleaning Improper-Zipper"
+  },
+  {
+    "code": "CIWI",
+    "description": "Cleaning Improper-Window"
+  },
+  {
+    "code": "CITU",
+    "description": "Cleaning Improper-Tounge Bit"
+  },
+  {
+    "code": "CITW",
+    "description": "Cleaning Improper-Top Panel / Window"
+  },
+  {
+    "code": "CTIP",
+    "description": "Cleaning Improper-Top"
+  },
+  {
+    "code": "CITB",
+    "description": "Cleaning Improper-Tab Bit"
+  },
+  {
+    "code": "CIST",
+    "description": "Cleaning Improper-Stamp Patti"
+  },
+  {
+    "code": "CIPR",
+    "description": "Cleaning Improper-Puller"
+  },
+  {
+    "code": "CIPU",
+    "description": "Cleaning Improper-Inside Pu"
+  },
+  {
+    "code": "CIIP",
+    "description": "Cleaning Improper-Inside Pkt"
+  },
+  {
+    "code": "CIII",
+    "description": "Cleaning Improper-Inside Lining"
+  },
+  {
+    "code": "CIGU",
+    "description": "Cleaning Improper-Gusset"
+  },
+  {
+    "code": "CIDL",
+    "description": "Cleaning Improper-Divider Lining"
+  },
+  {
+    "code": "CIDI",
+    "description": "Cleaning Improper-Divider"
+  },
+  {
+    "code": "CICS",
+    "description": "Cleaning Improper-Centre Stay"
+  },
+  {
+    "code": "CIPK",
+    "description": "Cleaning Improper-Cc Pkt"
+  },
+  {
+    "code": "CIPA",
+    "description": "Cleaning Improper-Cc Patti"
+  },
+  {
+    "code": "CIBW",
+    "description": "Cleaning Improper-Back Wall"
+  },
+  {
+    "code": "CISP",
+    "description": "Cleaning Improper-Stamp Pkt"
+  }
+ ],
+ "edge inking":[
+ {
+    "code": "CSEO",
+    "description": "Center Stay Edge Opening"
+  },
+  {
+    "code": "ESTP",
+    "description": "Edgeinking  Stain Mark-Top-Fqa"
+  },
+  {
+    "code": "ELTP",
+    "description": "Edgeinking  Layer-Top-Fqa"
+  },
+  {
+    "code": "EBTP",
+    "description": "Edgeinking  Bubble-Top-Fqa"
+  },
+  {
+    "code": "EUTP",
+    "description": "Edgeinking  Uncover-Top-Fqa"
+  },
+  {
+    "code": "EETP",
+    "description": "Edgeinking  Overflow-Top-Fqa"
+  },
+  {
+    "code": "EESW",
+    "description": "Edgeinking  Stain Mark-Window"
+  },
+  {
+    "code": "ESTW",
+    "description": "Edgeinking  Stain Mark-Top Panel / Window"
+  },
+  {
+    "code": "ESTP",
+    "description": "Edgeinking  Stain Mark-Top-Inqc"
+  },
+  {
+    "code": "ESPK",
+    "description": "Edgeinking  Stain Mark-Cc Pkt"
+  },
+  {
+    "code": "ESPA",
+    "description": "Edgeinking  Stain Mark-Cc Patti"
+  },
+  {
+    "code": "EELW",
+    "description": "Edgeinking  Layer-Window"
+  },
+  {
+    "code": "ELTW",
+    "description": "Edgeinking  Layer-Top Panel / Window"
+  },
+  {
+    "code": "ELTP",
+    "description": "Edgeinking  Layer-Top-Inqc"
+  },
+  {
+    "code": "ELPK",
+    "description": "Edgeinking  Layer-Cc Pkt"
+  },
+  {
+    "code": "ELPA",
+    "description": "Edgeinking  Layer-Cc Patti"
+  },
+  {
+    "code": "EEBW",
+    "description": "Edgeinking  Bubble-Window"
+  },
+  {
+    "code": "EBTW",
+    "description": "Edgeinking  Bubble-Top Panel / Window"
+  },
+  {
+    "code": "EBTP",
+    "description": "Edgeinking  Bubble-Top-Inqc"
+  },
+  {
+    "code": "EBPK",
+    "description": "Edgeinking  Bubble-Cc Pkt"
+  },
+  {
+    "code": "EBPA",
+    "description": "Edgeinking  Bubble-Cc Patti"
+  },
+  {
+    "code": "EEUW",
+    "description": "Edgeinking  Uncover-Window"
+  },
+  {
+    "code": "EUTW",
+    "description": "Edgeinking  Uncover-Top Panel / Window"
+  },
+  {
+    "code": "EUTP",
+    "description": "Edgeinking  Uncover-Top-Inqc"
+  },
+  {
+    "code": "EUPK",
+    "description": "Edgeinking  Uncover-Cc Pkt"
+  },
+  {
+    "code": "EUPA",
+    "description": "Edgeinking  Uncover-Cc Patti"
+  },
+  {
+    "code": "EEOW",
+    "description": "Edgeinking  Overflow-Window"
+  },
+  {
+    "code": "EETW",
+    "description": "Edgeinking  Overflow-Top Panel / Window"
+  },
+  {
+    "code": "EETP",
+    "description": "Edgeinking  Overflow-Top-Inqc"
+  },
+  {
+    "code": "ECPK",
+    "description": "Edgeinking  Overflow-Cc Pkt"
+  },
+  {
+    "code": "ECPA",
+    "description": "Edgeinking Overflow-Cc Patti"
+  },
+  {
+    "code": "EODI",
+    "description": "Edgeinking EI Overflow-Divider"
+  },
+  {
+    "code": "ELDI",
+    "description": "Edgeinking EI Layer-Divider"
+  },
+  {
+    "code": "EBDI",
+    "description": "Edgeinking EI Bubbles-Divider"
+  },
+  {
+    "code": "EOCS",
+    "description": "Edgeinking EI Overflow-Center Stay"
+  },
+  {
+    "code": "ELCS",
+    "description": "Edgeinking EI Layer-Center Stay"
+  },
+  {
+    "code": "EBCS",
+    "description": "Edgeinking EI Bubbles-Center Stay"
+  },
+  {
+    "code": "BITP",
+    "description": "Buffing Improper Top"
+  },
+  {
+    "code": "EIDA",
+    "description": "Edgeinking Damage"
+  }
+ ] ,
+ "others":[
+ {
+    "code": "ILMP",
+    "description": "Improper Lamping"
+  },
+  {
+    "code": "WSFQ",
+    "description": "Others Wrong Sop-Fqa"
+  },
+  {
+    "code": "WSIQ",
+    "description": "Others Wrong Sop-Inqc"
+  },
+  {
+    "code": "EBDA",
+    "description": "Embossing Damage-Top"
+  },
+  {
+    "code": "EBDM",
+    "description": "Embossing Damage-Stamp Pkt"
+  },
+  {
+    "code": "EBDT",
+    "description": "Embossing Dull-Top"
+  },
+  {
+    "code": "EBDL",
+    "description": "Embossing Dull-Stamp Pkt"
+  },
+  {
+    "code": "OCUN",
+    "description": "Creasing Problem-Cc Patti"
+  },
+  {
+    "code": "OBBO",
+    "description": "Bemis Bonding Open-Cc Patti"
+  },
+  {
+    "code": "WBOP",
+    "description": "Window Bonding Open"
+  },
+  {
+    "code": "TRIM",
+    "description": "Trimming Improper"
+  },
+  {
+    "code": "HTLS",
+    "description": "Hand Taka Loose"
+  },
+  {
+    "code": "SCPD",
+    "description": "Screen Printing Damage"
+  }
+],
+ "material":[
+ {
+    "code": "HAIF",
+    "description": "Hardware Improper Fixing"
+  },
+  {
+    "code": "HASM",
+    "description": "Hardware Scratch Mark"
+  },
+  {
+    "code": "HALA",
+    "description": "Hardware Logo Attaching"
+  },
+  {
+    "code": "COLM",
+    "description": "Coach Label Missing"
+  },
+  {
+    "code": "WPBL",
+    "description": "Wrong Placement Of Brand Logo"
+  },
+  {
+    "code": "HWDG",
+    "description": "Hardware Damage"
+  }
+  ],
+  "re-cutting":[
+  {
+    "code": "RUPA",
+    "description": "Recutting Uneven-Cc Patti"
+  },
+  {
+    "code": "RUPK",
+    "description": "Recutting Uneven-Cc Pkt"
+  }
+ ],
+  "stitching":[
+  {
+    "code": "SMAU",
+    "description": "Stitching Margin Uneven"
+  },
+  {
+    "code": "OSTJ",
+    "description": "Operator Stitching Jump"
+  },
+  {
+    "code": "SLTP",
+    "description": "Stitching Loop-Top"
+  },
+  {
+    "code": "SLPK",
+    "description": "Stitching Loop-Cc Pkt"
+  },
+  {
+    "code": "SUTP",
+    "description": "Stitching Spi Uneven-Top"
+  },
+  {
+    "code": "SUPK",
+    "description": "Stitching Spi Uneven-Cc Pkt"
+  }
+  ],
+  "glue mark":[
+  {
+    "code": "GMZK",
+    "description": "Glue Excess Mark-Zipper Pkt-Fqa"
+  },
+  {
+    "code": "GMZP",
+    "description": "Glue Excess Mark-Zipper-Fqa"
+  },
+  {
+    "code": "GMWI",
+    "description": "Glue Excess Mark-Window-Fqa"
+  },
+  {
+    "code": "GMTU",
+    "description": "Glue Excess Mark-Tounge Bit-Fqa"
+  },
+  {
+    "code": "GMTW",
+    "description": "Glue Excess Mark-Top Panel / Window-Fqa"
+  },
+  {
+    "code": "GMTP",
+    "description": "Glue Excess Mark-Top-Fqa"
+  },
+  {
+    "code": "GMTB",
+    "description": "Glue Excess Mark-Tab Bit-Fqa"
+  },
+  {
+    "code": "GSPA",
+    "description": "Glue Excess Mark-Stamp Patti-Fqa"
+  },
+  {
+    "code": "GMPR",
+    "description": "Glue Excess Mark-Puller-Fqa"
+  },
+  {
+    "code": "GMPU",
+    "description": "Glue Excess Mark-Inside Pu-Fqa"
+  },
+  {
+    "code": "GMIP",
+    "description": "Glue Excess Mark-Inside Pkt-Fqa"
+  },
+  {
+    "code": "GMII",
+    "description": "Glue Excess Mark-Inside Lining-Fqa"
+  },
+  {
+    "code": "GMGU",
+    "description": "Glue Excess Mark-Gusset-Fqa"
+  },
+  {
+    "code": "GMDL",
+    "description": "Glue Excess Mark-Divider Lining-Fqa"
+  },
+  {
+    "code": "GMDI",
+    "description": "Glue Excess Mark-Divider-Fqa"
+  },
+  {
+    "code": "GMCS",
+    "description": "Glue Excess Mark-Centre Stay-Fqa"
+  },
+  {
+    "code": "GMPK",
+    "description": "Glue Excess Mark-Cc Pkt-Fqa"
+  },
+  {
+    "code": "GMPA",
+    "description": "Glue Excess Mark-Cc Patti-Fqa"
+  },
+  {
+    "code": "GMBW",
+    "description": "Glue Excess Mark-Back Wall-Fqa"
+  },
+  {
+    "code": "GMSP",
+    "description": "Glue Excess Mark-Stamp Pkt-Fqa"
+  },
+  {
+    "code": "GMZK",
+    "description": "Glue Excess Mark-Zipper Pkt-Inqc"
+  },
+  {
+    "code": "GMZP",
+    "description": "Glue Excess Mark-Zipper-Inqc"
+  },
+  {
+    "code": "GMWI",
+    "description": "Glue Excess Mark-Window-Inqc"
+  },
+  {
+    "code": "GMTU",
+    "description": "Glue Excess Mark-Tounge Bit-Inqc"
+  },
+  {
+    "code": "GMTW",
+    "description": "Glue Excess Mark-Top Panel / Window-Inqc"
+  },
+  {
+    "code": "GMTP",
+    "description": "Glue Excess Mark-Top-Inqc"
+  },
+  {
+    "code": "GMTB",
+    "description": "Glue Excess Mark-Tab Bit-Inqc"
+  },
+  {
+    "code": "GSPA",
+    "description": "Glue Excess Mark-Stamp Patti-Inqc"
+  },
+  {
+    "code": "GMPR",
+    "description": "Glue Excess Mark-Puller-Inqc"
+  },
+  {
+    "code": "GMPU",
+    "description": "Glue Excess Mark-Inside Pu-Inqc"
+  },
+  {
+    "code": "GMIP",
+    "description": "Glue Excess Mark-Inside Pkt-Inqc"
+  },
+  {
+    "code": "GMII",
+    "description": "Glue Excess Mark-Inside Lining-Inqc"
+  },
+  {
+    "code": "GMGU",
+    "description": "Glue Excess Mark-Gusset-Inqc"
+  },
+  {
+    "code": "GMDL",
+    "description": "Glue Excess Mark-Divider Lining-Inqc"
+  },
+  {
+    "code": "GMDI",
+    "description": "Glue Excess Mark-Divider-Inqc"
+  },
+  {
+    "code": "GMCS",
+    "description": "Glue Excess Mark-Centre Stay-Inqc"
+  },
+  {
+    "code": "GMPK",
+    "description": "Glue Excess Mark-Cc Pkt-Inqc"
+  },
+  {
+    "code": "GMPA",
+    "description": "Glue Excess Mark-Cc Patti-Inqc"
+  },
+  {
+    "code": "GMBW",
+    "description": "Glue Excess Mark-Back Wall-Inqc"
+  },
+  {
+    "code": "GMSP",
+    "description": "Glue Excess Mark-Stamp Pkt-Inqc"
+  },
+  {
+    "code": "GMZK",
+    "description": "Glue Excess Mark-Zipper Pkt-Fqc"
+  },
+  {
+    "code": "GMZP",
+    "description": "Glue Excess Mark-Zipper-Fqc"
+  },
+  {
+    "code": "GMWI",
+    "description": "Glue Excess Mark-Window-Fqc"
+  },
+  {
+    "code": "GMTU",
+    "description": "Glue Excess Mark-Tounge Bit-Fqc"
+  },
+  {
+    "code": "GMTW",
+    "description": "Glue Excess Mark-Top Panel / Window-Fqc"
+  },
+  {
+    "code": "GMTP",
+    "description": "Glue Excess Mark-Top-Fqc"
+  },
+  {
+    "code": "GMTB",
+    "description": "Glue Excess Mark-Tab Bit-Fqc"
+  },
+  {
+    "code": "GSPA",
+    "description": "Glue Excess Mark-Stamp Patti-Fqc"
+  },
+  {
+    "code": "GMPR",
+    "description": "Glue Excess Mark-Puller-Fqc"
+  },
+  {
+    "code": "GMPU",
+    "description": "Glue Excess Mark-Inside Pu-Fqc"
+  },
+  {
+    "code": "GMIP",
+    "description": "Glue Excess Mark-Inside Pkt-Fqc"
+  },
+  {
+    "code": "GMII",
+    "description": "Glue Excess Mark-Inside Lining-Fqc"
+  },
+  {
+    "code": "GMGU",
+    "description": "Glue Excess Mark-Gusset-Fqc"
+  },
+  {
+    "code": "GMDL",
+    "description": "Glue Excess Mark-Divider Lining-Fqc"
+  },
+  {
+    "code": "GMDI",
+    "description": "Glue Excess Mark-Divider-Fqc"
+  },
+  {
+    "code": "GMCS",
+    "description": "Glue Excess Mark-Centre Stay-Fqc"
+  },
+  {
+    "code": "GMPK",
+    "description": "Glue Excess Mark-Cc Pkt-Fqc"
+  },
+  {
+    "code": "GMPA",
+    "description": "Glue Excess Mark-Cc Patti-Fqc"
+  },
+  {
+    "code": "GMBW",
+    "description": "Glue Excess Mark-Back Wall-Fqc"
+  },
+  {
+    "code": "GMSP",
+    "description": "Glue Excess Mark-Stamp Pkt-Fqc"
+  }
+  ],
+  "primer":[
+  {
+    "code": "PSTF",
+    "description": "Primer Stain Mark-Top-Fqa"
+  },
+  {
+    "code": "PLTF",
+    "description": "Primer Layer-Top-Fqa"
+  },
+  {
+    "code": "PBTF",
+    "description": "Primer Bubble-Top-Fqa"
+  },
+  {
+    "code": "PUTF",
+    "description": "Primer Uncover-Top-Fqa"
+  },
+  {
+    "code": "POTF",
+    "description": "Primer Overflow-Top-Fqa"
+  },
+  {
+    "code": "PSWI",
+    "description": "Primer Stain Mark-Window"
+  },
+  {
+    "code": "PSWI",
+    "description": "Primer Stain Mark-Top Panel / Window"
+  },
+  {
+    "code": "PSTW",
+    "description": "Primer Stain Mark-Top-Inqc"
+  },
+  {
+    "code": "PSPK",
+    "description": "Primer Stain Mark-Cc Pkt"
+  },
+  {
+    "code": "PSCP",
+    "description": "Primer Stain Mark-Cc Patti"
+  },
+  {
+    "code": "PLWI",
+    "description": "Primer Layer-Window"
+  },
+  {
+    "code": "PLTW",
+    "description": "Primer Layer-Top Panel / Window"
+  },
+  {
+    "code": "PLTI",
+    "description": "Primer Layer-Top-Inqc"
+  },
+  {
+    "code": "PLPK",
+    "description": "Primer Layer-Cc Pkt"
+  },
+  {
+    "code": "PLCP",
+    "description": "Primer Layer-Cc Patti"
+  },
+  {
+    "code": "PBWI",
+    "description": "Primer Bubble-Window"
+  },
+  {
+    "code": "PBTW",
+    "description": "Primer Bubble-Top Panel / Window"
+  },
+  {
+    "code": "PBTI",
+    "description": "Primer Bubble-Top-Inqc"
+  },
+  {
+    "code": "PBPK",
+    "description": "Primer Bubble-Cc Pkt"
+  },
+  {
+    "code": "PBCP",
+    "description": "Primer Bubble-Cc Patti"
+  },
+  {
+    "code": "PUWI",
+    "description": "Primer Uncover-Window"
+  },
+  {
+    "code": "PUTW",
+    "description": "Primer Uncover-Top Panel / Window"
+  },
+  {
+    "code": "PUTI",
+    "description": "Primer Uncover-Top-Inqc"
+  },
+  {
+    "code": "PUPK",
+    "description": "Primer Uncover-Cc Pkt"
+  },
+  {
+    "code": "PUCP",
+    "description": "Primer Uncover-Cc Patti"
+  },
+  {
+    "code": "POWI",
+    "description": "Primer Overflow-Window"
+  },
+  {
+    "code": "POTW",
+    "description": "Primer Overflow-Top Panel / Window"
+  },
+  {
+    "code": "POTI",
+    "description": "Primer Overflow-Top-Inqc"
+  },
+  {
+    "code": "POPK",
+    "description": "Primer Overflow-Cc Pkt"
+  },
+  {
+    "code": "POCP",
+    "description": "Primer Overflow-Cc Patti"
+  }
+  ]
+  }

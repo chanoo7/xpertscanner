@@ -53,13 +53,13 @@ router.post('/saveproductionplan', async (req, res, next) => {
 router.get('/getproductionplan', async (req, res, next) => {
   try {
     const productionplans = await ProductionPlans.findAll({
-      // include: [
-      //   { model: Styles, as: 'style' },
-      //   { model: RouteMaps, as: 'routeMap' },
-      //   { model: Processes, as: 'process' },
-      //   { model: SubProcesses, as: 'subProcess' },
-      //   { model: Positions, as: 'positions' }
-      // ],
+      include: [
+        { model: Styles, as: 'style' },
+        { model: RouteMaps, as: 'routeMap' },
+        { model: Processes, as: 'process' },
+        { model: SubProcesses, as: 'subProcess' },
+        { model: Positions, as: 'positions' }
+      ],
       order: [['id', 'DESC']] // Optional: sort newest first
     });
 

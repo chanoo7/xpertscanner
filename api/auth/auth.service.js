@@ -329,7 +329,9 @@ async function logout(req, res) {
     const refreshToken = req.cookies.refreshToken;
 
     if (!refreshToken) {
-      return res.status(401).json({ message: "No refresh token found!" });
+    //   return res.status(401).json({ message: "No refresh token found!" });
+    return { status:401, message: 'No refresh token found' };
+
     }
     //const refreshToken = req.cookies.refreshToken;    
     const accessToken = req.user.accessToken;

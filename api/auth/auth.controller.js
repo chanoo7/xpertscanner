@@ -69,54 +69,54 @@ transporter.verify((error, success) => {
 
 
 
-const mqtt = require('mqtt');
+// const mqtt = require('mqtt');
 
-const mqttBrokerUrl = process.env.MQTT_BROKER_URL || 'mqtt://localhost:1883';
-const mqttClient = mqtt.connect(mqttBrokerUrl);
+// const mqttBrokerUrl = process.env.MQTT_BROKER_URL || 'mqtt://localhost:1883';
+// const mqttClient = mqtt.connect(mqttBrokerUrl);
 
-const qrTopic = process.env.MQTT_QR_TOPIC || 'mqtt/kh/demo';
-const statusTopic = process.env.MQTT_STATUS_TOPIC || 'status';
+// const qrTopic = process.env.MQTT_QR_TOPIC || 'mqtt/kh/demo';
+// const statusTopic = process.env.MQTT_STATUS_TOPIC || 'status';
 
-let latestData = {
-  stationId: null,
-  timestamp: null,
-  qr: null,
-  status: null,
-};
+// let latestData = {
+//   stationId: null,
+//   timestamp: null,
+//   qr: null,
+//   status: null,
+// };
 
-mqttClient.on('connect', () => {
-  console.log('Connected to MQTT broker');
-  mqttClient.subscribe([qrTopic, statusTopic], (err) => {
-    if (err) {
-      console.error('MQTT subscribe error:', err);
-    }
-  });
-});
+// mqttClient.on('connect', () => {
+//   console.log('Connected to MQTT broker');
+//   mqttClient.subscribe([qrTopic, statusTopic], (err) => {
+//     if (err) {
+//       console.error('MQTT subscribe error:', err);
+//     }
+//   });
+// });
 
-mqttClient.on('message', (topic, message) => {
-  try {
-    const payload = JSON.parse(message.toString());
+// mqttClient.on('message', (topic, message) => {
+//   try {
+//     const payload = JSON.parse(message.toString());
 
-    if (topic === qrTopic) {
-      latestData = {
-        ...latestData,
-        stationId: payload.stationId || latestData.stationId,
-        timestamp: payload.timestamp || Date.now() / 1000,
-        qr: payload.qr || latestData.qr,
-      };
-    } else if (topic === statusTopic) {
-      latestData.status = payload.status || latestData.status;
-    }
+//     if (topic === qrTopic) {
+//       latestData = {
+//         ...latestData,
+//         stationId: payload.stationId || latestData.stationId,
+//         timestamp: payload.timestamp || Date.now() / 1000,
+//         qr: payload.qr || latestData.qr,
+//       };
+//     } else if (topic === statusTopic) {
+//       latestData.status = payload.status || latestData.status;
+//     }
 
-   // console.log(`Received MQTT data on topic [${topic}]:`, latestData);
-  } catch (err) {
-    console.error('Error parsing MQTT message:', err);
-  }
-});
+//    // console.log(`Received MQTT data on topic [${topic}]:`, latestData);
+//   } catch (err) {
+//     console.error('Error parsing MQTT message:', err);
+//   }
+// });
 
-router.get('/api/mqtt-data', (req, res) => {
-  res.json(latestData);
-});
+// router.get('/api/mqtt-data', (req, res) => {
+//   res.json(latestData);
+// });
 
 
 router.post('/send-otp', async (req, res) => {
@@ -286,7 +286,7 @@ function validateRegistration(req, res, next){
         allowedClient: Joi.string().required()
     });
 
-    validateRequest(req, next, schema);
+    validateRequest(req, res, next, schema);
 
 }
 
@@ -357,7 +357,7 @@ function validateRefreshToken(req, res, next){
         refreshToken: Joi.string().required(),        
     });
 
-    validateRequest(req, next, schema);
+    validateRequest(req, res, next, schema);
 
 }
 
@@ -391,7 +391,7 @@ function validateLogout(req, res, next){
         refreshToken: Joi.string().required(),        
     });
 
-    validateRequest(req, next, schema);
+    validateRequest(req, res, next, schema);
 
 }
 
@@ -433,7 +433,7 @@ function validateUpdatePassword(req, res, next){
         password: Joi.string().required(),        
     });
 
-    validateRequest(req, next, schema);
+    validateRequest(req, res, next, schema);
 
 }
 
@@ -451,7 +451,7 @@ function validateUser(req, res, next){
         username: Joi.string().required()
     });
 
-    validateRequest(req, next, schema);
+    validateRequest(req, res, next, schema);
 
 }
 
@@ -476,7 +476,7 @@ function validateOtp(req, res, next){
         otp: Joi.number().required(6)
     });
 
-    validateRequest(req, next, schema);
+    validateRequest(req, res,  next, schema);
 
 }
 
